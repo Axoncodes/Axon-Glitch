@@ -1,0 +1,176 @@
+/* font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* dropdown */
+/* --essentials */
+.dropdown {
+    min-width: 220px;
+    max-width: fit-content;
+    display: grid;
+    font-family: 'Roboto', sans-serif;
+    user-select: none;
+    position: relative;
+}
+
+/* head */
+.dropdown .dropdownHead {
+    padding: 1px;
+    overflow: hidden;
+    /* z-index: 6; */
+}
+.dropdown .dropdownHead.open {
+    box-shadow: 0px 0 2px 2.4px #1976d2;
+}
+.dropdown .dropdownHead .inner {
+    min-width: 206px;
+    max-width: fit-content;
+    cursor: pointer;
+    background-color: #fff;
+    padding: 3px 7px;
+    border-radius: .4em;
+    display: grid;
+    grid-template-columns: max-content auto max-content;
+    column-gap: 5px;
+    font-size: 15px;
+    transition: all .3s;
+    position: relative;
+    z-index: 1;
+    align-items: center;
+}
+.dropdown .dropdownHead .icon {
+    width: 28px;
+}
+.dropdown .dropdownHead .dropicon {
+    width: 30px;
+    margin: -10px;
+}
+.dropdown .dropdownHead .dropicon {
+    transition: all .3s;
+}
+.dropdown .dropdownHead.open .dropicon, 
+.dropdown .dropdownBody li.subopen[subtrigger="click"] > .listHead .inner .icon,
+.dropdown .dropdownBody li[subtrigger="hover"]:hover > .listHead .inner .icon {
+    transform: rotate(180deg);
+}
+.dropdown .dropdownBody .icon {
+    transition: all .3s;
+    padding-left: 0!important;
+}
+/* body */
+.dropdown .dropdownBody {
+    transition: opacity .1s, top .3s;
+    max-height: 0;
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    z-index: 5;
+}
+.dropdown .dropdownBody:not(.open) {
+    top: 27px!important;
+}
+.dropdown .dropdownBody.open {
+    opacity: 1;
+    top: 36px;
+    padding-top: 8px;
+}
+
+/* menu */
+.dropdown .dropdownBody .menu {
+    border-radius: .4em;
+    background-color: #fff;
+    box-shadow: 0 0 2px 1.6px #b0bec5;
+    max-height: 0;
+    margin: 0;
+    list-style: none;
+    transition: all .3s;
+    padding: 5px 2px;
+    z-index: -1;
+    user-select: none;
+}
+.dropdown li.subopen.side > ul.listSubmenu {
+    box-shadow: 0 0 2px 1.6px #b0bec5;
+}
+.dropdown li.subopen > ul.listSubmenu {
+    border-radius: .4em;
+    background-color: #fff;
+    width: max-content;
+}
+
+.dropdown .dropdownBody.open .menu {
+    z-index: unset;
+    user-select: unset;
+}
+
+/* list */
+.dropdown .dropdownBody.open > .menu li .listHead:hover {
+    background-color: #b3e5fc;
+    color: #01579b;
+}
+.dropdown .dropdownBody > .menu li {
+    display: grid;
+}
+.dropdown .dropdownBody > .menu li .listHead .inner > *:nth-child(1) {
+    padding-left: 0;
+}
+.dropdown .dropdownBody > .menu li .listHead .inner > * {
+    padding-left: 6px;
+    height: 100%;
+    align-self: center;
+    display: flex;
+    align-items: center;
+}
+.dropdown .dropdownBody > .menu li .listHead {
+    padding: 5px 6px;
+    border-radius: .4em;
+}
+.dropdown .dropdownBody > .menu li .listHead .inner {
+    color: #37474f;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all .1s;
+    display: grid;
+    grid-template-columns: max-content auto max-content;
+    /* column-gap: 6px; */
+    align-items: center;
+}
+
+/* submenu */
+.dropdown .dropdownBody .menu li > ul {
+    max-height: 0;
+}
+.dropdown .dropdownBody .menu li[subTrigger="click"]:not(.subopen) > ul,
+.dropdown .dropdownBody .menu li[subTrigger="hover"]:not(:hover) > ul,
+.dropdown .dropdownBody:not(.open) {
+    overflow: hidden;
+}
+
+.dropdown .dropdownBody .menu li[subtrigger='hover']:hover > ul, .dropdown .dropdownBody .menu li[subtrigger='click'].subopen > ul  {
+    max-height: max-content;
+}
+/* -- */
+
+
+/* side opening */
+.dropdown .dropdownBody > .menu li.side[subtrigger='hover']:hover, .dropdown .dropdownBody > .menu li.side[subtrigger='click'].subopen {
+    position: relative;
+}
+.dropdown .dropdownBody > .menu li.side[subtrigger='hover']:hover > ul, .dropdown .dropdownBody > .menu li.side[subtrigger='click'].subopen > ul {
+    position: absolute;
+    padding: 0;
+}
+
+/* custom mega dropdown */
+.dropdown.mega .dropdownBody {
+    width: 100vw;
+    left: 0;
+}
+
+
+
+/* takeour dropdown */
+.dropdownTakeout .dropdown > .dropdownBody.open {
+    top: 0!important;
+}
+p {
+    margin: 0;
+}
