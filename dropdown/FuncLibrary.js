@@ -178,14 +178,34 @@ window.addEventListener("load", ()=>{
     if(dropdown.length>1) {
       dropdown[0].classList.add("open");
       dropdown[1].classList.add("open");
-    }else dropdown[0].classList.add("open");
+    } else dropdown[0].classList.add("open");
     body.classList.add("open");
     head.classList.add("open");
-    lists.forEach((list, key)=>{
+    lists.forEach((list)=>{
       height += list.clientHeight;
       menu.style.maxHeight = (height+minMenuHeight)+"px";
       body.style.maxHeight = (height+minMenuHeight)+"px";
+    });
+  
+    if(body.getAttribute("mode").indexOf("mega") >= 0) {
+      const megaheight = (window.innerHeight - body.offsetTop)-18;
+      body.style.height = megaheight+"px";
+      body.querySelector(".menu").style.height = megaheight+"px";
+    }
+  }
+
+  // active megadropdown height handler
+  function megaheighthandler() {
+    document.querySelectorAll('.dropdown.open').forEach(element => {
+      if(element.getAttribute("mode").indexOf("mega") >= 0) {
+        const body = element.querySelector(".dropdownBody");
+        const megaheight = (window.innerHeight - (body.offsetTop + element.offsetTop))-9;
+        console.log('body.offsetTop', body.offsetTop);
+        body.style.height = megaheight+"px";
+        body.querySelector(".menu").style.height = megaheight+"px";
+      }
     })
   }
+  window.addEventListener("resize", megaheighthandler);
 
 });

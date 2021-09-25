@@ -17,6 +17,7 @@ function axCustomDropdown(element) {
             targetLocator: element.attributes.targetLocator?element.attributes.targetLocator.value:null,
             title: element.attributes.title?element.attributes.title.value:null,
             icon: element.attributes.icon?element.attributes.icon.value:null,
+            level: element.attributes.level?element.attributes.level.value:null,
             mode: element.attributes.mode?element.attributes.mode.value:null,
             structure: element.attributes.structure?element.attributes.structure.value:null,
             options: element.attributes.options?JSON.parse(element.attributes.options.value):null,
@@ -25,7 +26,6 @@ function axCustomDropdown(element) {
         };
         const childMode = `childMode="${attrs.mode}" childModeId="${dropdownsCount}" `;
 
-        // if(attrs.targetLocator) {
         const dropdownHead = `
             <div ${childMode} class="dropdownHead" subtrigger="${attrs.subTrigger}" mode="${attrs.structure}">
                 <div ${childMode} class="inner">
@@ -43,22 +43,21 @@ function axCustomDropdown(element) {
         if(attrs.targetLocator && attrs.targetLocator.length>0) {
             document.getElementById(attrs.targetLocator).classList.add(`dropdown-${dropdownsCount}`);
             document.getElementById(attrs.targetLocator).innerHTML = `<section ${childMode} class="dropdown">${dropdownBody}</section>`;
-            element.innerHTML = `<section ${childMode} class="dropdown">${dropdownHead}</section>`;
+            element.innerHTML = `<section mode="${attrs.structure}" ${childMode} class="dropdown">${dropdownHead}</section>`;
             dropdownsCount++;
         }else{
             dropdownsCount++;
-            element.innerHTML = `<section ${childMode} class="dropdown">${dropdownHead} ${dropdownBody}</section>`;
+            element.innerHTML = `<section mode="${attrs.structure}" ${childMode} class="dropdown">${dropdownHead} ${dropdownBody}</section>`;
         }
     }
 }
 
 // dropdown content handler
 function dropdownContent_handler(data, childMode) {
-    // if(!element.getAttribute('nomain')){
     var content = ``;
     data.map((item)=>{
         content += `
-        <li ${childMode} subTrigger="${item.subTrigger?item.subTrigger:'hover'}" class="list ${item.subOpening?item.subOpening:''}">
+        <li ${childMode} subTrigger="${item.subTrigger?item.subTrigger:''}" class="list ${item.subOpening?item.subOpening:''} ${item.level?item.level:''}">
             <div ${childMode} class="listHead">
                 ${item.url?`<a ${childMode} href="${item.url}" class="inner">`:`<div class="inner">`}
                     ${item.icon?`<img ${childMode} src="./assets/icons/${item.icon.url}"/>`:`<span></span>`}

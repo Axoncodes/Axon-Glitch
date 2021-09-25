@@ -1,6 +1,8 @@
 /* font */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
+body {
+    margin: 0;
+}
 /* dropdown */
 /* --essentials */
 .dropdown {
@@ -108,6 +110,7 @@
 }
 .dropdown .dropdownBody > .menu li {
     display: grid;
+    height: max-content;
 }
 .dropdown .dropdownBody > .menu li .listHead .inner > *:nth-child(1) {
     padding-left: 0;
@@ -160,12 +163,111 @@
 }
 
 /* custom mega dropdown */
-.dropdown.mega .dropdownBody {
-    width: 100vw;
-    left: 0;
+.dropdown[mode="mega"][nomain="true"], 
+.dropdownTakeout,
+.dropdownTakeout > .dropdown  {
+    position: absolute;
+    width: 100%;
+    max-width: 100%;
+}
+
+.dropdownTakeout .menu .tab {
+    background-color: #797979;
+}
+.dropdownTakeout > .dropdown .menu .tab .listHead {
+    width: 29%;
+    background-color: #d2d2d2;
+    z-index: 9;
+}
+.dropdownTakeout > .dropdown .menu .tab > ul {
+    position: absolute;
+    right: 0;
+    padding-left: 32%;
+    width: 65%;
+    background-color: #797979;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 3%;
+}
+.dropdown[mode="mega"][nomain="true"] .dropdownTakeout .menu,
+.dropdown[mode="mega"][nomain="true"] .dropdownTakeout .dropdown > .dropdownBody {
+    padding: 0;
+}
+
+.dropdownTakeout .dropdown .undertab > ul {
+    max-height: max-content!important;
+    padding: 0;
+}
+.dropdownTakeout .dropdown .undertab .listHead {
+    width: 100%!important;
+}
+.dropdownTakeout .dropdown .undertab .icon {
+    display: none!important;
+}
+
+.dropdown .dropdownBody.open > .menu .tab .listHead:hover {
+    background-color: #0000;
+}
+
+.dropdownTakeout .menu .tab .undertab > .listHead {
+    background-color: #0000;
+}
+
+.dropdownTakeout .menu .tab .undertab li div {
+    background-color: #0000!important;
+}
+
+.dropdown[mode="mega"] .tab > ul.listSubmenu {
+    height: min-content;
+    overflow-y: scroll;
+}
+
+.dropdownBody[mode="mega singletab"] .menu {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: space-between;
+}
+
+.dropdownBody[mode="mega singletab"] .menu > li {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.dropdownBody[mode="mega singletab"] .menu > li > ul {
+    position: relative!important;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 0;
+}
+
+section.dropdown[mode="mega singletab"] .dropdownHead {
+    width: fit-content;
+}
+
+.dropdownBody[mode="mega singletab"] {
+    width: 100%;
+    position: relative;
+    top: 0!important;
+}
+
+section.dropdown[mode="mega singletab"] {
+    width: 100%;
+    max-width: unset;
 }
 
 
+.dropdownBody[mode="mega singletab"] .menu > li .listHead .icon {
+    display: none;
+}
 
 /* takeour dropdown */
 .dropdownTakeout .dropdown > .dropdownBody.open {
