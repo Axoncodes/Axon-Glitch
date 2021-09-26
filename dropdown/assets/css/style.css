@@ -186,6 +186,15 @@ body {
     background-color: #d2d2d2;
     z-index: 9;
 }
+section.dropdown.mega .dropdownBody .menu > .undertab > .listHead {
+    margin-bottom: 21px;
+}
+section.dropdown.mega .dropdownBody .menu > .undertab > .listHead span {
+    font-size: 21px;
+}
+section.dropdown.mega .dropdownBody .menu > .undertab {
+    padding: 20px;
+}
 .dropdownTakeout > .dropdown .menu .tab > ul {
     position: absolute;
     right: 0;
@@ -256,17 +265,26 @@ body {
     padding: 0;
 }
 
-section.dropdown[mode="mega singletab"] .dropdownHead {
+section.dropdown[mode="mega singletab"].open .dropdownHead {
     width: fit-content;
 }
-
+section.dropdown.mega .tab > ul.listSubmenu > .list > .listHead {
+    padding-bottom: 15px;
+}
+section.dropdown.mega .tab > ul.listSubmenu > .list > .listHead span {
+    font-size: 20px;
+}
+section.dropdown.mega .tab > ul.listSubmenu > .list {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 .dropdownBody[mode="mega singletab"] {
     width: 100%;
     position: relative;
     top: 0!important;
 }
 
-section.dropdown[mode="mega singletab"] {
+section.dropdown[mode="mega singletab"].open {
     width: 100%;
     max-width: unset;
 }

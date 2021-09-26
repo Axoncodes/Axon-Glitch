@@ -44,11 +44,11 @@ function axCustomDropdown(element) {
         if(attrs.targetLocator && attrs.targetLocator.length>0) {
             document.getElementById(attrs.targetLocator).classList.add(`dropdown-${dropdownsCount}`);
             document.getElementById(attrs.targetLocator).innerHTML = `<section ${childMode} class="dropdown">${dropdownBody}</section>`;
-            element.innerHTML = `<section targetLocator="${attrs.targetLocator}" mode="${attrs.structure}" ${childMode} class="dropdown">${dropdownHead}</section>`;
+            element.innerHTML = `<section targetLocator="${attrs.targetLocator}" mode="${attrs.structure}" ${childMode} class="dropdown ${attrs.structure}">${dropdownHead}</section>`;
             dropdownsCount++;
         }else{
             dropdownsCount++;
-            element.innerHTML = `<section mode="${attrs.structure}" ${childMode} class="dropdown">${dropdownHead} ${dropdownBody}</section>`;
+            element.innerHTML = `<section mode="${attrs.structure}" ${childMode} class="dropdown ${attrs.structure}">${dropdownHead} ${dropdownBody}</section>`;
         }
     }
 }
@@ -71,11 +71,5 @@ function dropdownContent_handler(data, childMode) {
             </ul>
         </li>`;
     });
-
     return content;
-// }
 }
-function saySasho() {
-    console.log('sasho');
-}
-// dropdown --end
