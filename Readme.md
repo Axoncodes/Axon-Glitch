@@ -1,1 +1,1 @@
-this is Axon Glitch: AXG
+Welcome to Axon Glitch: AXG

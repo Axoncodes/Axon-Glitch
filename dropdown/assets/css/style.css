@@ -1,5 +1,5 @@
 /* font */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); */
 body {
     margin: 0;
 }
@@ -170,20 +170,27 @@ body {
     width: 100%;
     max-width: 100%;
 }
+.dropdown[mode="mega"][nomain="true"] .dropdownTakeout .menu {
+    background-color: #797979;
+    overflow-y: scroll;
+}
+.dropdownTakeout > .dropdown .menu .tab > ul span, .dropdownTakeout > .dropdown .menu .tab > ul a {
+    color: #fff;
+}
 
 .dropdownTakeout .menu .tab {
     background-color: #797979;
 }
 .dropdownTakeout > .dropdown .menu .tab .listHead {
-    width: 29%;
+    width: 22%;
     background-color: #d2d2d2;
     z-index: 9;
 }
 .dropdownTakeout > .dropdown .menu .tab > ul {
     position: absolute;
     right: 0;
-    padding-left: 32%;
-    width: 65%;
+    padding-left: 25%;
+    width: 72%;
     background-color: #797979;
     top: 0;
     display: flex;
@@ -219,7 +226,7 @@ body {
 }
 
 .dropdown[mode="mega"] .tab > ul.listSubmenu {
-    height: min-content;
+    height: 100%;
     overflow-y: scroll;
 }
 

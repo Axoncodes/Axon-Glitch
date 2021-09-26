@@ -15,6 +15,7 @@ function axCustomDropdown(element) {
         var attrs = {
             subTrigger: element.attributes.subTrigger?element.attributes.subTrigger.value:'click',
             targetLocator: element.attributes.targetLocator?element.attributes.targetLocator.value:null,
+            exit: element.attributes.exit?element.attributes.exit.value:null,
             title: element.attributes.title?element.attributes.title.value:null,
             icon: element.attributes.icon?element.attributes.icon.value:null,
             level: element.attributes.level?element.attributes.level.value:null,
@@ -43,7 +44,7 @@ function axCustomDropdown(element) {
         if(attrs.targetLocator && attrs.targetLocator.length>0) {
             document.getElementById(attrs.targetLocator).classList.add(`dropdown-${dropdownsCount}`);
             document.getElementById(attrs.targetLocator).innerHTML = `<section ${childMode} class="dropdown">${dropdownBody}</section>`;
-            element.innerHTML = `<section mode="${attrs.structure}" ${childMode} class="dropdown">${dropdownHead}</section>`;
+            element.innerHTML = `<section targetLocator="${attrs.targetLocator}" mode="${attrs.structure}" ${childMode} class="dropdown">${dropdownHead}</section>`;
             dropdownsCount++;
         }else{
             dropdownsCount++;

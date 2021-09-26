@@ -187,8 +187,10 @@ window.addEventListener("load", ()=>{
       body.style.maxHeight = (height+minMenuHeight)+"px";
     });
   
-    if(body.getAttribute("mode").indexOf("mega") >= 0) {
-      const megaheight = (window.innerHeight - body.offsetTop)-18;
+    if(dropdown[0].getAttribute("mode").indexOf("mega") >= 0) {
+      const thereductionrate = dropdown[0].getAttribute("targetlocator")?45:18;
+
+      const megaheight = (window.innerHeight - body.offsetTop)-thereductionrate;
       body.style.height = megaheight+"px";
       body.querySelector(".menu").style.height = megaheight+"px";
     }
@@ -197,15 +199,18 @@ window.addEventListener("load", ()=>{
   // active megadropdown height handler
   function megaheighthandler() {
     document.querySelectorAll('.dropdown.open').forEach(element => {
-      if(element.getAttribute("mode").indexOf("mega") >= 0) {
-        const body = element.querySelector(".dropdownBody");
-        const megaheight = (window.innerHeight - (body.offsetTop + element.offsetTop))-9;
+      if(element.getAttribute("mode") && element.getAttribute("mode").indexOf("mega") >= 0) {
+        var body;
+        if(element.getAttribute("targetlocator")) body = document.querySelector(`#${element.getAttribute("targetlocator")} .dropdownBody`);
+        else body = element.querySelector(".dropdownBody");
         console.log('body.offsetTop', body.offsetTop);
+        console.log('element.offsetTop', element.offsetTop);
+        const thereductionrate = element.getAttribute("targetlocator")?72:9;
+        const megaheight = (window.innerHeight - (body.offsetTop + element.offsetTop))-thereductionrate;
         body.style.height = megaheight+"px";
         body.querySelector(".menu").style.height = megaheight+"px";
       }
     })
-  }
-  window.addEventListener("resize", megaheighthandler);
+  } window.addEventListener("resize", megaheighthandler);
 
 });
