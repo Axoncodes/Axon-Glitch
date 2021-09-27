@@ -120,6 +120,42 @@ window.addEventListener("load", ()=>{
     element.addEventListener("click", ()=>{dropdownHandler(key)});
   }
 
+  document.querySelectorAll(".dropdown.mega .dropdownBody .menu").forEach(element=>{
+    element.addEventListener("scroll", (event)=>{
+      console.log('event', (element.scrollTop)/56);
+      element.querySelector(".dropdownHeadTitle").style.opacity = element.scrollTop === 0 ? 1 : 1-((element.scrollTop)/56);
+    });
+  });
+
+
+  // head title settings
+  document.querySelectorAll(`ax-elements:not([nomain="true"]) > section.dropdown`).forEach((element)=>{
+    const inner = element.querySelector(".dropdownHead .inner");
+    document.querySelector(`.dropdownBody[childmode=${element.getAttribute("childmode")}] .menu .dropdownHeadTitle`).style.color = inner.getAttribute("headTitleColor");
+  });
+
+
+  // style on hover
+  document.querySelectorAll(`ax-elements:not([nomain="true"]) > section.dropdown`).forEach((element)=>{
+    const inner = element.querySelector(".dropdownHead .inner");
+    element.addEventListener("mouseover", ()=>{
+      if(!element.classList.contains("open")) {
+        element.querySelector(".dropdownHead .inner .dropicon").src = "./dropdown/assets/icons/down-white.svg";
+        inner.style.backgroundColor = inner.getAttribute("headbackgroundhover");
+        inner.style.color = inner.getAttribute("colorhover");
+        
+      }
+    });
+
+    element.addEventListener("mouseout", ()=>{
+      if(!element.classList.contains("open")) {
+        element.querySelector(".dropdownHead .inner .dropicon").src = "./dropdown/assets/icons/down.svg";
+        inner.style.backgroundColor = inner.getAttribute("headbackground");
+        inner.style.color = inner.getAttribute("color");
+      }
+    });
+  });
+
 
   function dropdownHandler(key) {
 
@@ -166,9 +202,11 @@ window.addEventListener("load", ()=>{
       dropdown[0].classList.remove("open");
       dropdown[1].classList.remove("open");
     }else dropdown[0].classList.remove("open");
-    
     body.classList.remove("open");
     head.classList.remove("open");
+    head.querySelector(".inner").style.backgroundColor=head.querySelector(".inner").getAttribute("headbackground");
+    head.querySelector(".inner").style.color=head.querySelector(".inner").getAttribute("color");
+    head.querySelector(".inner .dropicon").src="./dropdown/assets/icons/down.svg";
     menu.style.maxHeight = 0, 
     body.style.maxHeight = 0
   }
@@ -181,6 +219,9 @@ window.addEventListener("load", ()=>{
     } else dropdown[0].classList.add("open");
     body.classList.add("open");
     head.classList.add("open");
+    head.querySelector(".inner").style.backgroundColor=head.querySelector(".inner").getAttribute("activebackground");
+    head.querySelector(".inner").style.color=head.querySelector(".inner").getAttribute("colorhover");
+    head.querySelector(".inner .dropicon").src="./dropdown/assets/icons/down-white.svg";
     lists.forEach((list)=>{
       height += list.clientHeight;
       menu.style.maxHeight = (height+minMenuHeight)+"px";
