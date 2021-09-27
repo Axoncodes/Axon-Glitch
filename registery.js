@@ -5,12 +5,30 @@ var dropdownsCount = 0;
 customElements.define('ax-elements', class AxElements extends HTMLElement {
     connectedCallback() {
         switch(this.getAttribute('mode')) {
-            case "dropdown": new axCustomDropdown(this); break;
+            case "dropdown": axCustomDropdown(this); break;
+            case "dropdownGroup": axCustomDropdownGroup(this); break;
             case "logo": axCustomLogo(this); break;
             default: break;
         }
     }
 });
+
+
+// dropdown group --start
+function axCustomDropdownGroup(element) {
+    var attrs = {
+        mode: element.attributes.mode?element.attributes.mode.value:null,
+        title: element.attributes.title?element.attributes.title.value:null,
+        color: element.attributes.color?element.attributes.color.value:null,
+        colorHover: element.attributes.colorHover?element.attributes.colorHover.value:null,
+        activeBackground: element.attributes.activeBackground?element.attributes.activeBackground.value:null,
+        headBackground: element.attributes.headBackground?element.attributes.headBackground.value:null,
+        headBackgroundHover: element.attributes.headBackgroundHover?element.attributes.headBackgroundHover.value:null,
+    };
+    
+}
+// dropdown group --finish
+
 
 
 
@@ -35,13 +53,13 @@ function axCustomDropdown(element) {
             background: element.attributes.background?element.attributes.background.value:null,
             structure: element.attributes.structure?element.attributes.structure.value:null,
             options: element.attributes.options?JSON.parse(element.attributes.options.value):null,
-            width: parseInt(element.attributes.width?element.attributes.width.value:'220'),
+            width: parseInt(element.attributes.width?element.attributes.width.value:null),
             height: parseInt(element.attributes.height?element.attributes.height.value:'22'),
         };
         const childMode = `childMode="${attrs.mode}" childModeId="${dropdownsCount}" `;
 
         const dropdownHead = `
-            <div ${childMode} style="height:${attrs.height+"px"}" class="dropdownHead" subtrigger="${attrs.subTrigger}" mode="${attrs.structure}">
+            <div ${childMode} style="height:${attrs.height+"px"}; ${attrs.width?`width:${((attrs.width)+4)+"px"}`:``}" class="dropdownHead" subtrigger="${attrs.subTrigger}" mode="${attrs.structure}">
                 <div ${childMode} 
                 activeBackground="${attrs.activeBackground}" 
                 colorHover="${attrs.colorHover}" 
@@ -49,9 +67,10 @@ function axCustomDropdown(element) {
                 color="${attrs.color}"
                 headTitleColor="${attrs.headTitleColor}"
                 headBackground="${attrs.headBackground}" 
-                class="inner">
+                class="inner"
+                style="${attrs.width?`min-width:${((attrs.width)-10)+"px"}`:``}">
 
-                    ${attrs.icon?`<img ${childMode} class="icon" src="./dropdown/assets/icons/${attrs.icon}">`:`<span></span>`}
+                    ${attrs.icon?`<img ${childMode} class="icon" src="./dropdown/assets/icons/${attrs.icon}">`:``}
                     <span ${childMode}>${attrs.title}</span> 
                     <img ${childMode} class="dropicon" src="./dropdown/assets/icons/down.svg">
 
@@ -60,8 +79,7 @@ function axCustomDropdown(element) {
         const dropdownList = dropdownContent_handler(attrs.options, childMode);
 
         const dropdownBody = `
-            <div ${childMode} class="dropdownBody" mode="${attrs.structure}" style="min-width:${attrs.width+"px"}">
-                
+            <div ${childMode} class="dropdownBody" mode="${attrs.structure}" style="${attrs.width?`min-width:${attrs.width+"px"}`:``}">
                 <ul ${childMode} style="background-color:${attrs.background}" class="menu">
                     ${attrs.headTitle?`<h3 class="dropdownHeadTitle">${attrs.headTitle}</h3>`:``}
                     ${dropdownList}
@@ -70,14 +88,15 @@ function axCustomDropdown(element) {
         if(attrs.targetLocator && attrs.targetLocator.length>0) {
             document.getElementById(attrs.targetLocator).classList.add(`dropdown-${dropdownsCount}`);
             document.getElementById(attrs.targetLocator).innerHTML = `<section ${childMode} class="dropdown">${dropdownBody}</section>`;
-            element.innerHTML = `<section targetLocator="${attrs.targetLocator}" mode="${attrs.structure}" ${childMode} class="dropdown ${attrs.structure}">${dropdownHead}</section>`;
+            element.innerHTML = `<section style="${attrs.width?`min-width:${attrs.width+"px"}`:``}" targetLocator="${attrs.targetLocator}" mode="${attrs.structure}" ${childMode} class="dropdown ${attrs.structure}">${dropdownHead}</section>`;
             dropdownsCount++;
         }else{
             dropdownsCount++;
-            element.innerHTML = `<section mode="${attrs.structure}" ${childMode} class="dropdown ${attrs.structure}">${dropdownHead} ${dropdownBody}</section>`;
+            element.innerHTML = `<section style="${attrs.width?`min-width:${attrs.width+"px"}`:``}" mode="${attrs.structure}" ${childMode} class="dropdown ${attrs.structure}">${dropdownHead} ${dropdownBody}</section>`;
         }
     }
 }
+
 
 // dropdown content handler
 function dropdownContent_handler(data, childMode) {

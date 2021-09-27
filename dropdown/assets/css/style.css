@@ -24,7 +24,7 @@ body {
     box-shadow: 0px 0 2px 2.4px #1976d2;
 } */
 .dropdown .dropdownHead .inner {
-    min-width: 206px;
+    min-width: min-content;
     max-width: fit-content;
     cursor: pointer;
     background-color: #fff;
@@ -61,7 +61,6 @@ body {
 .dropdown.mega .menu {
     padding-top: 70px!important;
     row-gap: 0;
-    display: flex;
     align-items: flex-start;
     align-content: flex-start!important;
 }
@@ -335,4 +334,38 @@ section.dropdown[mode="mega singletab"].open {
 }
 p {
     margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* mobile */
+@media (max-width: 426px) {
+    .dropdown.mega .menu {
+        display: grid!important;
+        place-content: center;
+    }
+    .dropdown.mega .menu > li {
+        display: grid!important;
+        place-items: center;
+    }
+    .dropdown .dropdownBody > .menu li .listHead .inner {
+        text-align: center;
+        place-items: center;
+    }
 }
