@@ -1,6 +1,6 @@
 // var dropdownSubMenuDiv = [];
 window.addEventListener("load", ()=>{
-    
+
   // dropdown handler
   const dropdowns = document.querySelectorAll("ax-elements .dropdown");
   const dropdownHeaders = document.querySelectorAll("ax-elements .dropdown .dropdownHead");
@@ -41,17 +41,14 @@ window.addEventListener("load", ()=>{
   // click:
   window.addEventListener("click", (event)=>{
 
-    const dropdowns = document.querySelectorAll("ax-elements .dropdown");
     const dropdownHeaders = document.querySelectorAll("ax-elements .dropdown .dropdownHead");
-    const dropdownBody = document.querySelectorAll("ax-elements .dropdown .dropdownBody");
-    const dropdownMenu = document.querySelectorAll("ax-elements .dropdown .dropdownBody .menu");
     // if the click is on a dropdown
     let triggerOnDropdown = false;
     if(event.target.getAttribute("childmode") == "dropdown" ) triggerOnDropdown = true;
 
     if(!triggerOnDropdown) {
       dropdownHeaders.forEach((dom, key)=>{
-        const currentmenu = document.querySelectorAll(`ax-elements .dropdown:nth-child(${key}) .dropdownBody .menu li[subtrigger='click'].subopen`);
+        const currentmenu = document.querySelectorAll(`ax-elements .dropdown .dropdown[childmodeid='${key}'] .dropdownBody .menu li[subtrigger='click'].subopen`);
         currentmenu.forEach((element, key)=>{element.classList.remove("subopen")});
         closeDom(
           document.querySelectorAll(`ax-elements .dropdown[childmodeid='${key}']`), 
@@ -64,7 +61,7 @@ window.addEventListener("load", ()=>{
     else{
       dropdownHeaders.forEach((dom, key)=>{
         if (event.target.getAttribute("childmodeid") != dom.getAttribute("childmodeid")) {
-          const currentmenu = document.querySelectorAll(`ax-elements .dropdown:nth-child(${key}) .dropdownBody .menu li[subtrigger='click'].subopen`);
+          const currentmenu = document.querySelectorAll(`ax-elements .dropdown[childmodeid='${key}'] .dropdownBody .menu li[subtrigger='click'].subopen`);
           currentmenu.forEach((element, key)=>{
             if(!isDescendant(element, event.target))
               element.classList.remove("subopen")
@@ -108,7 +105,7 @@ window.addEventListener("load", ()=>{
   function dropdownHoverTrigger(element, key) {
     element.addEventListener("mouseenter", ()=>{dropdownHandler(key)});
     element.addEventListener("mouseleave", ()=>{
-      const currentmenu = document.querySelectorAll(`ax-elements:nth-child(${key+1}) .dropdown .dropdownBody .menu li[subtrigger='click'].subopen`);
+      const currentmenu = document.querySelectorAll(`ax-elements .dropdown[childmodeid='${key+1}'] .dropdownBody .menu li[subtrigger='click'].subopen`);
       currentmenu.forEach((element1, key)=>{
         element1.classList.remove("subopen");
       });
@@ -122,7 +119,6 @@ window.addEventListener("load", ()=>{
 
   document.querySelectorAll(".dropdown.mega .dropdownBody .menu").forEach(element=>{
     element.addEventListener("scroll", (event)=>{
-      console.log('event', (element.scrollTop)/56);
       element.querySelector(".dropdownHeadTitle").style.opacity = element.scrollTop === 0 ? 1 : 1-((element.scrollTop)/56);
     });
   });
@@ -160,7 +156,6 @@ window.addEventListener("load", ()=>{
   function dropdownHandler(key) {
 
     // declare
-    
     const dropdown = document.querySelectorAll(`ax-elements .dropdown[childmodeid='${key}']`);
     const head = document.querySelector(`ax-elements .dropdown .dropdownHead[childmodeid='${key}']`);
     const body = document.querySelector(`ax-elements .dropdown .dropdownBody[childmodeid='${key}']`);
@@ -173,20 +168,20 @@ window.addEventListener("load", ()=>{
       :openDom(dropdown, body, head, lists, menu);
       
     // subopening handler
-    document.querySelectorAll(`ax-elements:nth-child(${key+1}) .dropdown .dropdownBody .menu li.side > ul`).forEach((dom, key2)=>{
+    document.querySelectorAll(`ax-elements .dropdown[childmodeid="${key+1}"] .dropdownBody .menu li.side > ul`).forEach((dom, key2)=>{
       handleTheDropdownsFallingOutOfView(key+1, dom);
-      console.log('handleTheDropdownsFallingOutOfView');
-      // dom.style.left = dom.clientWidth+"px";
     });
 
     // custom --mega
     if(body.getAttribute('mode') == "mega") {
       body.style.left = "-"+dropdown.offsetLeft+"px";
     }
+
+
   }
 
   function handleTheDropdownsFallingOutOfView(key, actualdom) {
-    var dom = document.querySelector(`ax-elements:nth-child(${key}) .dropdown`);
+    var dom = document.querySelector(`ax-elements .dropdown[childmodeid='${key}']`);
     let righthand = dom.scrollWidth + dom.offsetLeft + actualdom.clientWidth;
     if(window.innerWidth <= righthand) {
       actualdom.style.left = "unset";
@@ -229,37 +224,28 @@ window.addEventListener("load", ()=>{
     });
   
     if(dropdown[0].getAttribute("mode").indexOf("mega") >= 0) {
-      const thereductionrate = dropdown[0].getAttribute("targetlocator")?45:18;
+      const thereductionrate = dropdown[0].getAttribute("targetlocator")?148:18;
 
       const megaheight = (window.innerHeight - body.offsetTop)-thereductionrate;
       body.style.height = megaheight+"px";
-      body.querySelector(".menu").style.height = megaheight+"px";
+      body.querySelector(".menu").style.height = (megaheight)+"px";
     }
   }
 
-  // active megadropdown height handler
-  function megaheighthandler() {
+  // active megadropdown size handler
+  function megasizehandler() {
     document.querySelectorAll('.dropdown.open').forEach(element => {
       if(element.getAttribute("mode") && element.getAttribute("mode").indexOf("mega") >= 0) {
         var body;
         if(element.getAttribute("targetlocator")) body = document.querySelector(`#${element.getAttribute("targetlocator")} .dropdownBody`);
         else body = element.querySelector(".dropdownBody");
-        console.log('body.offsetTop', body.offsetTop);
-        console.log('element.offsetTop', element.offsetTop);
-        const thereductionrate = element.getAttribute("targetlocator")?72:9;
+        const thereductionrate = element.getAttribute("targetlocator")?148:9;
         const megaheight = (window.innerHeight - (body.offsetTop + element.offsetTop))-thereductionrate;
         body.style.height = megaheight+"px";
-        body.querySelector(".menu").style.height = megaheight+"px";
+        body.querySelector(".menu").style.height = (megaheight)+"px";
       }
     })
-  } window.addEventListener("resize", megaheighthandler);
-
-
-
-  // dropdownGroup
-  function dropdownGroup() {
-    
-  }
+  } window.addEventListener("resize", megasizehandler);
 
 
 });

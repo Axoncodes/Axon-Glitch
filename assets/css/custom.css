@@ -6,7 +6,9 @@ header {
 #dropdown1 .menu li .listHead:hover {
     background-color: #317391;
 }
-[targetLocator="dropdown1"] .dropdownHead .inner {
-    grid-template-columns: min-content min-content!important;
+[targetLocator="dropdown1"] .dropdownHead .inner, 
+[targetLocator="dropdown2"] .dropdownHead .inner, 
+[targetLocator="dropdown3"] .dropdownHead .inner {
+    grid-template-columns: max-content min-content!important;
     padding: 3px 20px;
 }

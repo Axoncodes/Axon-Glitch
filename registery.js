@@ -57,6 +57,7 @@ function axCustomDropdown(element) {
             height: parseInt(element.attributes.height?element.attributes.height.value:'22'),
         };
         const childMode = `childMode="${attrs.mode}" childModeId="${dropdownsCount}" `;
+        const inner = element.innerHTML; 
 
         const dropdownHead = `
             <div ${childMode} style="height:${attrs.height+"px"}; ${attrs.width?`width:${((attrs.width)+4)+"px"}`:``}" class="dropdownHead" subtrigger="${attrs.subTrigger}" mode="${attrs.structure}">
@@ -68,31 +69,33 @@ function axCustomDropdown(element) {
                 headTitleColor="${attrs.headTitleColor}"
                 headBackground="${attrs.headBackground}" 
                 class="inner"
-                style="${attrs.width?`min-width:${((attrs.width)-10)+"px"}`:``}">
-
+                style="${attrs.width?`min-width:${((attrs.width)-10)+"px"}; width:${((attrs.width)-10)+"px"}`:``}">
                     ${attrs.icon?`<img ${childMode} class="icon" src="./dropdown/assets/icons/${attrs.icon}">`:``}
                     <span ${childMode}>${attrs.title}</span> 
                     <img ${childMode} class="dropicon" src="./dropdown/assets/icons/down.svg">
-
                 </div>
             </div>`;
-        const dropdownList = dropdownContent_handler(attrs.options, childMode);
+            
+        const { content, count } = dropdownContent_handler(attrs.options, childMode);
 
+        const dropdownList = content;
         const dropdownBody = `
             <div ${childMode} class="dropdownBody" mode="${attrs.structure}" style="${attrs.width?`min-width:${attrs.width+"px"}`:``}">
-                <ul ${childMode} style="background-color:${attrs.background}" class="menu">
-                    ${attrs.headTitle?`<h3 class="dropdownHeadTitle">${attrs.headTitle}</h3>`:``}
+                <ul ${childMode} style="background-color:${attrs.background};" class="menu">
+                    ${attrs.headTitle?`<h3 class="dropdown dropdownHeadTitle" ${childMode}>${attrs.headTitle}</h3>`:``}
+                    ${attrs.exit?`<svg class="exitbutton" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>`:``}
                     ${dropdownList}
+                    ${inner}
                 </ul>
             </div>`;
         if(attrs.targetLocator && attrs.targetLocator.length>0) {
             document.getElementById(attrs.targetLocator).classList.add(`dropdown-${dropdownsCount}`);
             document.getElementById(attrs.targetLocator).innerHTML = `<section ${childMode} class="dropdown">${dropdownBody}</section>`;
-            element.innerHTML = `<section style="${attrs.width?`min-width:${attrs.width+"px"}`:``}" targetLocator="${attrs.targetLocator}" mode="${attrs.structure}" ${childMode} class="dropdown ${attrs.structure}">${dropdownHead}</section>`;
+            element.innerHTML = `<section style="${attrs.width?`min-width:${attrs.width+"px"}`:``}" targetLocator="${attrs.targetLocator}" mode="${attrs.structure}" ${childMode} class="dropdown mainDropdown ${attrs.structure}">${dropdownHead}</section>`;
             dropdownsCount++;
         }else{
             dropdownsCount++;
-            element.innerHTML = `<section style="${attrs.width?`min-width:${attrs.width+"px"}`:``}" mode="${attrs.structure}" ${childMode} class="dropdown ${attrs.structure}">${dropdownHead} ${dropdownBody}</section>`;
+            element.innerHTML = `<section style="${attrs.width?`min-width:${attrs.width+"px"}`:``}" mode="${attrs.structure}" ${childMode} class="dropdown mainDropdown ${attrs.structure}">${dropdownHead} ${dropdownBody}</section>`;
         }
     }
 }
@@ -101,22 +104,30 @@ function axCustomDropdown(element) {
 // dropdown content handler
 function dropdownContent_handler(data, childMode) {
     var content = ``;
-    data.map((item)=>{
-        content += `
-        <li ${childMode} subTrigger="${item.subTrigger?item.subTrigger:''}" class="list ${item.subOpening?item.subOpening:''} ${item.level?item.level:''}">
-            <div ${childMode} class="listHead">
-                ${item.url?`<a ${childMode} href="${item.url}" class="inner">`:`<div class="inner">`}
-                    ${item.icon?`<img ${childMode} src="./dropdown/assets/icons/${item.icon.url}"/>`:`<span></span>`}
-                    <span style="color:${item.color}" ${childMode}>${item.title}</span>
-                    ${item.content?`<img ${childMode} class="icon" src="./dropdown/assets/icons/down.svg">`:`<span></span>`}
-                ${item.url?`</a>`:`</div>`}
-            </div>
-            <ul ${childMode} class="listSubmenu">
-                ${item.content?dropdownContent_handler(item.content, childMode):``}
-            </ul>
-        </li>`;
-    });
-    return content;
+    let count=0;
+    if(data) {
+        data.map((item)=>{
+            count++;
+            content += `
+            <li ${childMode} subTrigger="${item.subTrigger?item.subTrigger:''}" class="list ${item.subOpening?item.subOpening:''} ${item.level?item.level:''}">
+                <div ${childMode} class="listHead">
+                    ${item.url?`<a ${childMode} href="${item.url}" class="inner">`:`<div class="inner">`}
+                        ${item.icon?`<img ${childMode} src="./dropdown/assets/icons/${item.icon.url}"/>`:`<span></span>`}
+                        ${item.title?`<span style="color:${item.color}" ${childMode}>${item.title}</span>`:``}
+                        ${item.content?`<img ${childMode} class="icon" src="./dropdown/assets/icons/down.svg">`:`<span></span>`}
+                    ${item.url?`</a>`:`</div>`}
+                </div>
+                <ul ${childMode} class="listSubmenu">
+                    ${item.content?dropdownContent_handler(item.content, childMode).content:``}
+                </ul>
+            </li>`;
+        });
+    }
+    return {
+        content,
+        count
+    };
+
 }
 // dropdown --finish
 

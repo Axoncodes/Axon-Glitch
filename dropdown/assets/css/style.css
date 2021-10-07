@@ -6,7 +6,7 @@ body {
 /* dropdown */
 /* --essentials */
 .dropdown {
-    min-width: 220px;
+    min-width: max-content;
     max-width: fit-content;
     display: grid;
     font-family: 'Roboto', sans-serif;
@@ -16,7 +16,6 @@ body {
 
 /* head */
 .dropdown .dropdownHead {
-    padding: 1px;
     overflow: hidden;
     display: grid;
 }
@@ -29,7 +28,6 @@ body {
     cursor: pointer;
     background-color: #fff;
     padding: 3px 7px;
-    border-radius: .4em;
     display: grid;
     grid-template-columns: max-content auto max-content;
     column-gap: 5px;
@@ -58,33 +56,18 @@ body {
     transition: all .3s;
     padding-left: 0!important;
 }
-.dropdown.mega .menu {
-    padding-top: 70px!important;
-    row-gap: 0;
-    align-items: flex-start;
-    align-content: flex-start!important;
+
+.dropdown.mega .menu > .list {
+    display: grid;
 }
-.dropdown.mega .menu  > .list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    align-items: flex-start;
-}
-/* .dropdown.mega .menu {
-    padding-top: 70px!important;
-    row-gap: 0;
-    display: grid!important;
-    grid-template-columns: auto auto auto auto;
-    align-content: flex-start!important;
-} */
+
 /* dropdownHeadTitle */
 .dropdown .dropdownBody .menu .dropdownHeadTitle {
-    padding: 30px 32px;
+    padding: 40px 32px;
     margin: 0;
     padding-bottom: 0;
     color: #fff;
-    font-size: 31px;
+    font-size: 2rem;
     font-weight: 600;
     position: absolute;
     top: 0;
@@ -92,7 +75,7 @@ body {
 
 /* body */
 .dropdown .dropdownBody {
-    transition: opacity .1s, top .3s;
+    /* transition: opacity .1s, top .3s; */
     max-height: 0;
     position: absolute;
     width: 100%;
@@ -110,14 +93,11 @@ body {
 
 /* menu */
 .dropdown .dropdownBody .menu {
-    border-radius: .4em;
     background-color: #fff;
-    box-shadow: 0 0 2px 1.6px #b0bec5;
     max-height: 0;
     margin: 0;
     list-style: none;
-    transition: all .3s;
-    padding: 5px 2px;
+    /* transition: all .3s; */
     z-index: -1;
     user-select: none;
 }
@@ -154,10 +134,6 @@ body {
     display: flex;
     align-items: center;
 }
-.dropdown .dropdownBody > .menu li .listHead {
-    padding: 5px 6px;
-    border-radius: .4em;
-}
 .dropdown .dropdownBody > .menu li .listHead .inner {
     color: #37474f;
     text-decoration: none;
@@ -167,6 +143,8 @@ body {
     grid-template-columns: max-content auto max-content;
     /* column-gap: 6px; */
     align-items: center;
+    padding: 5px 6px;
+    border-radius: 1px;
 }
 
 /* submenu */
@@ -201,6 +179,7 @@ body {
     position: absolute;
     width: 100%;
     max-width: 100%;
+    margin-top: -1px;
 }
 .dropdown[mode="mega"][nomain="true"] .dropdownTakeout .menu {
     background-color: #797979;
@@ -219,7 +198,7 @@ body {
     z-index: 9;
 }
 section.dropdown.mega .dropdownBody .menu > .undertab > .listHead {
-    margin-bottom: 21px;
+    margin-bottom: 7px;
 }
 section.dropdown.mega .dropdownBody .menu > .undertab > .listHead span {
     font-size: 21px;
@@ -271,7 +250,7 @@ section.dropdown.mega .dropdownBody .menu > .undertab {
     overflow-y: scroll;
 }
 
-.dropdownBody[mode="mega singletab"] .menu {
+.dropdown .dropdownBody.mega.singletab .menu {
     overflow-y: scroll;
     overflow-x: hidden;
     padding: 0;
@@ -282,13 +261,13 @@ section.dropdown.mega .dropdownBody .menu > .undertab {
     justify-content: space-between;
 }
 
-.dropdownBody[mode="mega singletab"] .menu > li {
+.dropdown .dropdownBody.mega.singletab .menu > li {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
 }
 
-.dropdownBody[mode="mega singletab"] .menu > li > ul {
+.dropdown .dropdownBody.mega.singletab .menu > li > ul {
     position: relative!important;
     display: flex;
     flex-direction: column;
@@ -324,7 +303,7 @@ section.dropdown[mode="mega singletab"].open {
 }
 
 
-.dropdownBody[mode="mega singletab"] .menu > li .listHead .icon {
+.dropdown .dropdownBody.mega.singletab .menu > li .listHead .icon {
     display: none;
 }
 
@@ -342,24 +321,103 @@ p {
 
 
 
+/* dropdownGroup */
+.dropdown.dropdownGroup {
+    display: flex;
+}
+@media (min-width: 700px) {
+    .dropdown.mega .menu {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding: 0 9vw!important;
+        padding-top: 80px!important;
+        align-content: space-between;
+        align-items: stretch;
+    }
+    .dropdownGroup .dropdownBody.open .menu, .dropdownGroup .dropdownBody.open {
+        max-height: unset!important;
+        height: auto;
+        width: auto;
+    }
+    .dropdownGroup .dropdownBody.open {
+        top: 54px;
+    }
+    .dropdownGroup .dropdownBody, .dropdownGroup .dropdownBody .menu {
+        overflow: unset!important;
+        height: auto;
+        max-height: initial!important;
+        width: auto;
+        opacity: 1;
+        display: flex;
+        background-color: #0000!important;
+        box-shadow: unset;
+    }
+    .dropdownGroup > .dropdownHead {
+        display: none!important;
+    }
+    section.dropdown.dropdownGroup .dropdownBody {
+        position: relative;
+        top: 0!important;
+        padding-top: 0;
+    }
+}
+
+
+@media (max-width: 699px) {
+    .dropdown.mega .menu {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        padding: 0!important;
+        padding-top: 80px!important;
+    }
+    section.dropdown.dropdownGroup > .dropdownBody.open > ul.menu {
+        max-height: max-content!important;
+        height: max-content;
+        padding: 0;
+        position: fixed;
+        left: 0px;
+        width: 100vw;
+        max-width: unset;
+    }
+    section.dropdown.dropdownGroup > .dropdownBody.open {
+        top: 56px;
+    }
+    section.dropdown.mainDropdown.dropdownGroup .dropdown.mainDropdown {
+        width: 100vw;
+        max-width: 100vw;
+        justify-items: center;
+    }
+}
 
 
 
 
 
-
-
-
-
+/* exit button */
+.dropdown .dropdownBody .menu .exitbutton:hover {
+    background-color: #fff;
+    fill: #000;
+}
+.dropdown .dropdownBody .menu .exitbutton {
+    padding: 21px;
+    margin: 0;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 900;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 39px;
+    height: auto;
+    fill: #fff;
+    cursor: pointer;
+}
 
 
 
 /* mobile */
-@media (max-width: 426px) {
-    .dropdown.mega .menu {
-        display: grid!important;
-        place-content: center;
-    }
+@media (max-width: 699px) {
     .dropdown.mega .menu > li {
         display: grid!important;
         place-items: center;
