@@ -2,13 +2,15 @@ header {
     display: flex;
     align-items: center;
     padding: 0 12px;
+    position: sticky;
+    top: 0;
+    height: auto;
+    z-index: 999999;
+    background-color: #fff;
 }
-#dropdown1 .menu li .listHead:hover {
-    background-color: #317391;
-}
-[targetLocator="dropdown1"] .dropdownHead .inner, 
-[targetLocator="dropdown2"] .dropdownHead .inner, 
-[targetLocator="dropdown3"] .dropdownHead .inner {
-    grid-template-columns: max-content min-content!important;
-    padding: 3px 20px;
+
+section.dropdown.mega {
+    z-index: 99;
+    position: sticky!important;
+    top: 72px;
 }

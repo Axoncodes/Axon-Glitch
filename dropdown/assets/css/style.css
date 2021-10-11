@@ -27,7 +27,7 @@ body {
     max-width: fit-content;
     cursor: pointer;
     background-color: #fff;
-    padding: 3px 7px;
+    padding: 3px 13px;
     display: grid;
     grid-template-columns: max-content auto max-content;
     column-gap: 5px;
@@ -59,6 +59,15 @@ body {
 
 .dropdown.mega .menu > .list {
     display: grid;
+}
+
+/* simple */
+.dropdown.simple .dropdownBody .menu {
+    width: max-content;
+    padding: 7px 10px;
+}
+section.dropdown.simple .dropdownTakeout .dropdown > .dropdownBody.open {
+    top: -3px!important;
 }
 
 /* dropdownHeadTitle */
@@ -111,12 +120,16 @@ body {
 }
 
 .dropdown .dropdownBody.open .menu {
-    z-index: unset;
+    z-index: 999999999;
+    position: relative;
     user-select: unset;
+}
+section.dropdown.open {
+    z-index: 30;
 }
 
 /* list */
-.dropdown .dropdownBody.open > .menu li .listHead:hover {
+.dropdown .dropdownBody.open > .menu li .listSubmenu .listHead:hover a {
     background-color: #b3e5fc;
     color: #01579b;
 }
@@ -325,15 +338,19 @@ p {
 .dropdown.dropdownGroup {
     display: flex;
 }
+.dropdown.mega .menu {
+    /* width: 82vw; */
+}
 @media (min-width: 700px) {
     .dropdown.mega .menu {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
         padding: 0 9vw!important;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         padding-top: 80px!important;
         align-content: space-between;
         align-items: stretch;
+        /* display: grid; */
     }
     .dropdownGroup .dropdownBody.open .menu, .dropdownGroup .dropdownBody.open {
         max-height: unset!important;
@@ -381,7 +398,7 @@ p {
         max-width: unset;
     }
     section.dropdown.dropdownGroup > .dropdownBody.open {
-        top: 56px;
+        top: 62px;
     }
     section.dropdown.mainDropdown.dropdownGroup .dropdown.mainDropdown {
         width: 100vw;
