@@ -69,7 +69,11 @@ body {
 section.dropdown.simple .dropdownTakeout .dropdown > .dropdownBody.open {
     top: -3px!important;
 }
-
+section.dropdown.simple {
+    z-index: 99;
+    position: sticky!important;
+    top: 67px;
+}
 /* dropdownHeadTitle */
 .dropdown .dropdownBody .menu .dropdownHeadTitle {
     padding: 40px 32px;
@@ -335,12 +339,7 @@ p {
 
 
 /* dropdownGroup */
-.dropdown.dropdownGroup {
-    display: flex;
-}
-.dropdown.mega .menu {
-    /* width: 82vw; */
-}
+.dropdown.dropdownGroup { display: flex; }
 @media (min-width: 700px) {
     .dropdown.mega .menu {
         padding: 0 9vw!important;
