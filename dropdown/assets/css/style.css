@@ -107,7 +107,7 @@ section.dropdown.simple {
 /* menu */
 .dropdown .dropdownBody .menu {
     background-color: #fff;
-    max-height: 0;
+    /* max-height: 0; */
     margin: 0;
     list-style: none;
     /* transition: all .3s; */

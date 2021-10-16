@@ -8,10 +8,19 @@ customElements.define('ax-elements', class AxElements extends HTMLElement {
             case "dropdown": axCustomDropdown(this); break;
             case "dropdownGroup": axCustomDropdownGroup(this); break;
             case "logo": axCustomLogo(this); break;
+            case "sidebar": axCustomSidebar(this); break;
             default: break;
         }
     }
 });
+
+
+
+// axCustomSidebar --start
+function axCustomSidebar(element) {
+    
+}
+
 
 
 // dropdown group --start
@@ -25,7 +34,6 @@ function axCustomDropdownGroup(element) {
         headBackground: element.attributes.headBackground?element.attributes.headBackground.value:null,
         headBackgroundHover: element.attributes.headBackgroundHover?element.attributes.headBackgroundHover.value:null,
     };
-    
 }
 // dropdown group --finish
 
@@ -76,9 +84,7 @@ function axCustomDropdown(element) {
                 </div>
             </div>`;
             
-        const { content, count } = dropdownContent_handler(attrs.options, childMode);
-
-        const dropdownList = content;
+        const dropdownList = dropdownContent_handler(attrs, attrs.options, childMode);
         const dropdownBody = `
             <div ${childMode} class="dropdownBody" mode="${attrs.structure}" style="${attrs.width?`min-width:${attrs.width+"px"}`:``}">
                 <ul ${childMode} style="background-color:${attrs.background};" class="menu">
@@ -106,7 +112,7 @@ function axCustomDropdown(element) {
  * @item.subOpening : sub, side
  * @item.subTrigger : click, hover
  */
-function dropdownContent_handler(data, childMode) {
+function dropdownContent_handler(attrs, data, childMode) {
     var content = ``;
     let count=0;
     if(data) {
@@ -114,7 +120,7 @@ function dropdownContent_handler(data, childMode) {
             count++;
             content += `
             <li ${childMode} subTrigger="${item.subTrigger?item.subTrigger:'click'}" class="list ${item.subOpening?item.subOpening:'sub'} ${item.level?item.level:''}">
-                <div ${childMode} class="listHead">
+                <div ${childMode} class="listHead ${attrs.structure}">
                     ${item.url?`<a ${childMode} href="${item.url}" class="inner">`:`<div class="inner">`}
                         ${item.icon?`<img ${childMode} src="./dropdown/assets/icons/${item.icon.url}"/>`:`<span></span>`}
                         ${item.title?`<span style="color:${item.color}" ${childMode}>${item.title}</span>`:``}
@@ -122,15 +128,12 @@ function dropdownContent_handler(data, childMode) {
                     ${item.url?`</a>`:`</div>`}
                 </div>
                 <ul ${childMode} class="listSubmenu">
-                    ${item.content?dropdownContent_handler(item.content, childMode).content:``}
+                    ${item.content?dropdownContent_handler(attrs, item.content, childMode).content:``}
                 </ul>
             </li>`;
         });
     }
-    return {
-        content,
-        count
-    };
+    return content;
 
 }
 // dropdown --finish

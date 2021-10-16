@@ -8,14 +8,15 @@ window.addEventListener("load", ()=>{
   const dropdownSubMenu = document.querySelectorAll("ax-elements .dropdown .dropdownBody .menu li[subtrigger='click']");
 
   // handle submenu clicks
-  dropdownSubMenuDiv.forEach((element, key)=>{
-    element.addEventListener("click", (event)=>{
-      const currentmenu = dropdownSubMenu[key];
-      event.preventDefault();
-      currentmenu.classList.contains("subopen")
-        ?currentmenu.classList.remove("subopen")
-        :currentmenu.classList.add("subopen");
-    });
+  dropdownSubMenuDiv.forEach((element, key) => {
+    if(!element.classList.contains("singletab")) 
+      element.addEventListener("click", (event) => {
+        const currentmenu = dropdownSubMenu[key];
+        event.preventDefault();
+        currentmenu.classList.contains("subopen")
+          ? currentmenu.classList.remove("subopen")
+          : currentmenu.classList.add("subopen");
+      });
   });
 
   dropdownHeaders.forEach((element, key)=>{
@@ -198,8 +199,8 @@ window.addEventListener("load", ()=>{
     head.querySelector(".inner").style.backgroundColor=head.querySelector(".inner").getAttribute("headbackground");
     head.querySelector(".inner").style.color=head.querySelector(".inner").getAttribute("color");
     head.querySelector(".inner .dropicon").src="https://axoncodes.com/libraries/dropdown/assets/icons/down.svg";
-    menu.style.maxHeight = 0, 
-    body.style.maxHeight = 0
+    // menu.style.maxHeight = 0;
+    body.style.maxHeight = 0;
   }
 
   function openDom(dropdown, body, head, lists, menu) {
@@ -215,7 +216,7 @@ window.addEventListener("load", ()=>{
     head.querySelector(".inner .dropicon").src="https://axoncodes.com/libraries/dropdown/assets/icons/down-white.svg";
     lists.forEach((list)=>{
       height += list.clientHeight;
-      menu.style.maxHeight = (height+minMenuHeight)+"px";
+      // menu.style.maxHeight = (height+minMenuHeight)+"px";
       body.style.maxHeight = (height+minMenuHeight)+"px";
     });
   
@@ -240,7 +241,6 @@ window.addEventListener("load", ()=>{
 
   // active megadropdown size handler
   function megasizehandler() {
-    console.log(document.documentElement.offsetWidth, window.innerWidth);
     document.querySelectorAll('.dropdown.open').forEach(element => {
       if(element.getAttribute("mode") && element.getAttribute("mode").indexOf("mega") >= 0) {
         var body;
