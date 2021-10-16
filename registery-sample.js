@@ -77,7 +77,11 @@ function axCustomDropdown(element) {
                 headTitleColor="${attrs.headTitleColor}"
                 headBackground="${attrs.headBackground}" 
                 class="inner"
-                style="${attrs.width?`min-width:${((attrs.width)-10)+"px"}; width:${((attrs.width)-10)+"px"}`:``}">
+                style="
+                    ${attrs.width?`min-width:${((attrs.width)-10)+"px"};
+                    width:${((attrs.width)-10)+"px"}`:``};
+                    grid-template-columns:${attrs.icon?`max-content auto max-content`:`max-content auto`};
+                ">
                     ${attrs.icon?`<img ${childMode} class="icon" src="./dropdown/assets/icons/${attrs.icon}">`:``}
                     <span ${childMode}>${attrs.title}</span> 
                     <img ${childMode} class="dropicon" src="https://axoncodes.com/libraries//dropdown/assets/icons/down.svg">

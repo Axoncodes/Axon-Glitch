@@ -29,7 +29,7 @@ body {
     background-color: #fff;
     padding: 3px 13px;
     display: grid;
-    grid-template-columns: max-content auto max-content;
+    /* grid-template-columns: max-content auto max-content; */
     column-gap: 5px;
     font-size: 15px;
     transition: all .3s;
