@@ -114,10 +114,8 @@ function axCustomDropdown(element) {
  */
 function dropdownContent_handler(attrs, data, childMode) {
     var content = ``;
-    let count=0;
     if(data) {
         data.map((item)=>{
-            count++;
             content += `
             <li ${childMode} subTrigger="${item.subTrigger?item.subTrigger:'click'}" class="list ${item.subOpening?item.subOpening:'sub'} ${item.level?item.level:''}">
                 <div ${childMode} class="listHead ${attrs.structure}">
@@ -128,7 +126,7 @@ function dropdownContent_handler(attrs, data, childMode) {
                     ${item.url?`</a>`:`</div>`}
                 </div>
                 <ul ${childMode} class="listSubmenu">
-                    ${item.content?dropdownContent_handler(attrs, item.content, childMode).content:``}
+                    ${item.content?dropdownContent_handler(attrs, item.content, childMode):``}
                 </ul>
             </li>`;
         });
