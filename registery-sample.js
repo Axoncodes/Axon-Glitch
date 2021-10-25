@@ -152,7 +152,7 @@ function axCustomLogo(element) {
     };
     element.innerHTML = `
         <a href="${attrs.link}" class="headerLogo">
-            <img src="${attrs.src}" alt="${attrs.alt}" />
+            <img width="100" src="${attrs.src}" alt="${attrs.alt}" />
         </a>
     `;
 }
