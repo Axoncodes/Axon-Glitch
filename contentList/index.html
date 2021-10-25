@@ -1,0 +1,96 @@
+<aside id="lf_landing_right">
+    <ul class="lf_landing_right_sub">
+        <p id="lf_landing_leftside_second_content_list_guid3">
+            <span>Content List</span>
+        </p>
+        <div id="lf_right_content_list_bg"></div>
+    </ul>
+    <div class="lf_sharing">
+        <ul class="lf_share_btns">
+            <p>Share</p>
+            <div>
+            <?php
+                $title= urlencode(get_the_title());
+                $url= urlencode(get_the_permalink());
+                $homeurl= urlencode(get_bloginfo('url'));
+                $desc = urlencode(get_the_excerpt());  
+                $postthumburi = urlencode(get_the_post_thumbnail_url());  
+                $themdirect = get_template_directory_uri();
+            ?>
+                <li class="lf_share_event lf_media_facebook">
+                    <a aria-label="test" target="_blank" rel="noopener noreferrer" href="https://facebook.com/sharer.php?u=<?php echo $url; ?>&t=<?php echo $title; ?>">
+                        <img alt="test" width="20px" height="20px" src="<?php echo $themdirect; ?>/assets/icons/facebook.svg" />
+                    </a>
+                </li>
+                <li class="lf_share_event lf_media_pinterest">
+                    <a aria-label="test" target="_blank" rel="noopener noreferrer" href="https://pinterest.com/pin/create/button/?description=<?php echo $title; ?>&media=<?php echo $postthumburi; ?>&url=<?php echo $url; ?>">
+                        <img alt="test" width="20px" height="20px" src="<?php echo $themdirect; ?>/assets/icons/pinterest.svg" />
+                    </a>
+                </li>
+                <li class="lf_share_event lf_media_email">
+                    <a aria-label="test" target="_blank" href="mailto:?subject=<?php echo $title; ?>&body=Check out this site <?php echo $url; ?>">
+                        <img alt="test" width="20px" height="20px" src="<?php echo $themdirect; ?>/assets/icons/gmail.svg" />
+                    </a>
+                </li>
+                <li class="lf_share_event lf_media_twitter">
+                    <a aria-label="test" target="_blank" rel="noopener noreferrer" href="https://twitter.com/intent/tweet?url=<?php echo $url; ?>&text=<?php echo $title; ?>&hashtags=<?php echo $title; ?>">
+                        <img alt="test" width="20px" height="20px" src="<?php echo $themdirect; ?>/assets/icons/twitter.svg" />
+                    </a>
+                </li>
+                <li class="lf_share_event lf_media_whatsapp">
+                    <a aria-label="test" target="_blank" rel="noopener noreferrer" href="https://wa.me/?text=<?php echo $url; ?>">
+                        <img alt="test" width="20px" height="20px" src="<?php echo $themdirect; ?>/assets/icons/whatsapp.svg" />
+                    </a>
+                </li>
+                <li class="lf_share_event lf_media_telegram">
+                    <a aria-label="test" target="_blank" rel="noopener noreferrer" href="https://telegram.me/share/url?url=<?php echo $url; ?>&text=<?php echo $title; ?>">
+                        <img alt="test" width="20px" height="20px" src="<?php echo $themdirect; ?>/assets/icons/telegram.svg" />
+                    </a>
+                </li>
+                <li class="lf_share_event lf_media_linkedin">
+                    <a aria-label="test" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $url; ?>&title=<?php echo $title; ?>&summary=<?php echo $desc; ?>&source=<?php echo $title; ?>">
+                        <img alt="test" width="20px" height="20px" src="<?php echo $themdirect; ?>/assets/icons/linkedin.svg" />
+                    </a>
+                </li>
+                <li class="lf_share_event lf_media_blogger">
+                    <a aria-label="test" target="_blank" rel="noopener noreferrer" href="https://www.blogger.com/blog-this.g?n=<?php echo $desc; ?>&t=<?php echo $title; ?>&u=<?php echo $url; ?>">
+                        <img alt="test" width="20px" height="20px" src="<?php echo $themdirect; ?>/assets/icons/blogger.svg" />
+                    </a>
+                </li>
+                <li class="lf_share_event lf_media_tumblr">
+                    <a aria-label="test" target="_blank" rel="noopener noreferrer" href="https://www.tumblr.com/share?t=<?php echo $title; ?>&u=<?php echo $url; ?>">
+                        <img alt="test" width="20px" height="20px" src="<?php echo $themdirect; ?>/assets/icons/tumblr.svg" />
+                    </a>
+                </li>
+                <li class="lf_share_event lf_media_reddit">
+                    <a aria-label="test" target="_blank" rel="noopener noreferrer" href="http://www.reddit.com/submit?url=<?php echo $url; ?>&title=<?php echo $title; ?>">
+                        <img alt="test" width="20px" height="20px" src="<?php echo $themdirect; ?>/assets/icons/reddit.svg" />
+                    </a>
+                </li>
+                <li class="lf_share_event lf_media_sms">
+                    <a aria-label="test" target="_blank" href="sms:?body=Hi there. Check out<?php echo $url; ?>">
+                        <img alt="test" width="20px" height="20px" src="<?php echo $themdirect; ?>/assets/icons/sms.svg" />
+                    </a>
+                </li>
+                <li class="lf_share_event lf_media_rss">
+                    <a aria-label="test" target="_blank" href="https://homapilot.com/feed/">
+                        <img alt="test" width="20px" height="20px" src="<?php echo $themdirect; ?>/assets/icons/rss.svg" />
+                    </a>
+                </li>
+                <li class="lf_share_event lf_media_print" id="lf_landing_print">
+                    <a aria-label="print" target="_blank" href="#">
+                        <img alt="test" width="20px" height="20px" src="<?php echo $themdirect; ?>/assets/icons/printer.svg" />
+                    </a>
+                </li>
+                <li class="lf_share_event lf_media_url lf_d">
+                    <p aria-label="test">
+                        <img alt="test" width="20px" height="20px" src="<?php echo $themdirect; ?>/assets/icons/copy.svg" />
+                    </p>
+                </li>
+            </div>
+            <input aria-label="test" value="<?php echo "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>" class="lf_input_clip"/>
+            <span class="lf_copyurl_tooltip" id="lf_copyurl_tooltip_main">Link copied!</span>
+        </ul>
+        <ul class="lf_share_status"></ul>
+    </div>
+</aside>
