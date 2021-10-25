@@ -19,19 +19,15 @@ body {
     overflow: hidden;
     display: grid;
 }
-/* .dropdown .dropdownHead.open {
-    box-shadow: 0px 0 2px 2.4px #1976d2;
-} */
 .dropdown .dropdownHead .inner {
+    font-size: var(--standard-text-fontSize);
     min-width: min-content;
     max-width: fit-content;
     cursor: pointer;
     background-color: #fff;
     padding: 3px 13px;
     display: grid;
-    /* grid-template-columns: max-content auto max-content; */
     column-gap: 5px;
-    font-size: 15px;
     transition: all .3s;
     position: relative;
     z-index: 1;
@@ -340,17 +336,17 @@ p {
 
 /* dropdownGroup */
 .dropdown.dropdownGroup { display: flex; }
+.dropdown.mega .menu {
+    padding: 0 9vw!important;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 80px!important;
+    align-content: space-between;
+    align-items: stretch;
+    /* display: grid; */
+}
 @media (min-width: 700px) {
-    .dropdown.mega .menu {
-        padding: 0 9vw!important;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        padding-top: 80px!important;
-        align-content: space-between;
-        align-items: stretch;
-        /* display: grid; */
-    }
     .dropdownGroup .dropdownBody.open .menu, .dropdownGroup .dropdownBody.open {
         max-height: unset!important;
         height: auto;
@@ -384,8 +380,6 @@ p {
     .dropdown.mega .menu {
         flex-direction: column;
         flex-wrap: nowrap;
-        padding: 0!important;
-        padding-top: 80px!important;
     }
     section.dropdown.dropdownGroup > .dropdownBody.open > ul.menu {
         max-height: max-content!important;

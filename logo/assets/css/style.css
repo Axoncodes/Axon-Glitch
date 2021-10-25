@@ -1,4 +1,8 @@
 .headerLogo img {
     width: auto;
-    height: 50px;
+    height: 4vw;
+    min-height: 40px;
+}
+.headerLogo {
+    display: flex;
 }
