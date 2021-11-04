@@ -81,7 +81,9 @@ section.dropdown.simple {
     position: absolute;
     top: 0;
 }
-
+.dropdown.simple .dropdownBody .menu .dropdownHeadTitle {
+    display: none;
+}
 /* body */
 .dropdown .dropdownBody {
     /* transition: opacity .1s, top .3s; */
