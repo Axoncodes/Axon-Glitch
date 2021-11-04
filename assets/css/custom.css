@@ -8,9 +8,3 @@ header {
     z-index: 999999;
     background-color: #fff;
 }
-
-section.dropdown.mega {
-    z-index: 99;
-    position: sticky!important;
-    top: 72px;
-}

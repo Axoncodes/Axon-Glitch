@@ -62,13 +62,13 @@ body {
     width: max-content;
     padding: 7px 10px;
 }
-section.dropdown.simple .dropdownTakeout .dropdown > .dropdownBody.open {
+/* section.dropdown.simple .dropdownTakeout .dropdown > .dropdownBody.open {
     top: -3px!important;
-}
-section.dropdown.simple {
+} */
+section.dropdown.simple, section.dropdown.mega {
     z-index: 99;
     position: sticky!important;
-    top: 67px;
+    top: 70px;
 }
 /* dropdownHeadTitle */
 .dropdown .dropdownBody .menu .dropdownHeadTitle {
@@ -188,15 +188,15 @@ section.dropdown.open {
 }
 
 /* custom mega dropdown */
-.dropdown[mode="mega"][nomain="true"], 
+.dropdown.mega[nomain="true"], 
 .dropdownTakeout,
 .dropdownTakeout > .dropdown  {
     position: absolute;
     width: 100%;
     max-width: 100%;
-    margin-top: -1px;
+    /* margin-top: -1px; */
 }
-.dropdown[mode="mega"][nomain="true"] .dropdownTakeout .menu {
+.dropdown.mega[nomain="true"] .dropdownTakeout .menu {
     background-color: #797979;
     overflow-y: scroll;
 }
@@ -232,8 +232,8 @@ section.dropdown.mega .dropdownBody .menu > .undertab {
     justify-content: space-between;
     padding-right: 3%;
 }
-.dropdown[mode="mega"][nomain="true"] .dropdownTakeout .menu,
-.dropdown[mode="mega"][nomain="true"] .dropdownTakeout .dropdown > .dropdownBody {
+.dropdown.mega[nomain="true"] .dropdownTakeout .menu,
+.dropdown.mega[nomain="true"] .dropdownTakeout .dropdown > .dropdownBody {
     padding: 0;
 }
 
@@ -260,7 +260,7 @@ section.dropdown.mega .dropdownBody .menu > .undertab {
     background-color: #0000!important;
 }
 
-.dropdown[mode="mega"] .tab > ul.listSubmenu {
+.dropdown.mega .tab > ul.listSubmenu {
     height: 100%;
     overflow-y: scroll;
 }
@@ -325,6 +325,7 @@ section.dropdown[mode="mega singletab"].open {
 /* takeour dropdown */
 .dropdownTakeout .dropdown > .dropdownBody.open {
     top: 0!important;
+    padding-top: 0;
 }
 p {
     margin: 0;
