@@ -9,6 +9,7 @@ customElements.define('ax-elements', class AxElements extends HTMLElement {
             case "dropdownGroup": axCustomDropdownGroup(this); break;
             case "logo": axCustomLogo(this); break;
             case "sidebar": axCustomSidebar(this); break;
+            case "scrolldownAnimation": axCustomScrolldownAnimation(this); break;
             default: break;
         }
     }
@@ -19,6 +20,15 @@ customElements.define('ax-elements', class AxElements extends HTMLElement {
 // axCustomSidebar --start
 function axCustomSidebar(element) {
     
+}
+
+// axCustomScrolldownAnimation --start
+function axCustomScrolldownAnimation(element) {
+    element.innerHTML = `<div class="lf_scrolldown">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z"/></svg>
+    </div>`;
 }
 
 
