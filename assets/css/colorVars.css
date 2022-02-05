@@ -1,0 +1,55 @@
+:root {
+  /* main background colors */
+  --bg1:#fff;
+  --bg2:#f5f5f5;
+  --bg3:#e9e9e9;
+  /* main text colors */
+  --txt1:#191919;
+  --txt2:#2e2e2e;
+  
+  --darkColor: #1E1E1E;
+  --lf_country_li_hover:#e1e1e1;
+  --lf_country_li_active:#b1b1b1;
+  --sidebar_nav_li_bg:#c7c7c7;
+  --mobilesidebarbg:#F5F5F5;
+  --fulwidth_sections_bg:#90CAF9;
+  --page_titles_shadow:#000;
+  --page_titles:#fff;
+  --weblog_filter:#cecece;
+  --darkmode_reverse:#0e0e0e;
+  --search_hover:#d0d0d0;
+  --search_active:#b5b5b5;
+  --ax_body_bg:#fff;
+  --ax_service_bg:#fff;
+  --ax_service_sh1:#d6d6d6;
+  --ax_service_sh2:#303030;
+  --ax_service_sh3:#f5f5f5;
+  --ax_service_sub:#b3c3ff;
+  --ax_service_tab_bg:#d0d0d0cc;
+  --ax_service_tab_active:#f5f5f5;
+  --ax_home_offer_p:#3e3e3e;
+  --ax_home_offer_bg:#e9e5d76e;
+  --ax_home_offer_bg_hover:#e9e5d7;
+  --ax_btn_bg:#4CAF50;
+  --ax_btn_color:#fff;
+  --ax_btn_color_rev:#121212;
+  --ax_confer_input:#fff;
+  --ax_confer_placeholder:#afafaf;
+  --ax_confer_placeholder_focus:#5b5b5b;
+  --ax_head_search_bg:#f7f7f7;
+  --ax_head_search_txt:#787878;
+  --ax_head_search_span:#1f1e1f;
+  --ax_head_search_span_hover:#f7f7f7;
+  --ax_hovering_tel_bg1:#ffffff61;
+  --ax_hovering_tel_svg_bg1:#66bb6a;
+  --ax_hovering_tel_svg_hover_bg1:#fff;
+  --ax_hovering_tel_txt1:#000;
+  --ax_homenews_hover_bg:#cecece;
+  --ax_form_label:#747474;
+  --ax_span_color:#43a047;
+  --ax_audio_bg_mode:color-dodge;
+  --ax_audio_bg:#ff7c00;
+  --links_colors:#00aaef;
+  --lf_editor_border:#f1f1f1;
+  --lf_editor_bg:#282c34;
+}
