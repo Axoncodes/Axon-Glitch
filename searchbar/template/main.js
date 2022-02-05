@@ -15,7 +15,7 @@ if (document.getElementById("axg_searchform")) {
   window.addEventListener("scroll", () => {
     if (hideAtTop) {
       searchbar.classList.add('axg_hide')
-      if (window.scrollY > 200) searchbar.classList.remove('axg_hide')
+      if (window.scrollY > 300) searchbar.classList.remove('axg_hide')
     }
   });
 }
