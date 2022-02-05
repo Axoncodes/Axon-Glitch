@@ -2,6 +2,7 @@
   place-content: center;
   position: relative;
   width: 100%;
+  margin: 0 15px;
 }
 
 #axg_searchbar label {
