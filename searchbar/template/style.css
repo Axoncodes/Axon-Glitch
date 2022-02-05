@@ -114,10 +114,19 @@
   border-radius: 1.3em;
 }
 
+#axg_searchbar:not(.axg_active) {
+  overflow: hidden;
+}
+
 #axg_searchbar.axg_active #axg_searchform_res_cover ul {
   width: unset;
   height: unset;
   padding-top: 48px;
+}
+
+#axg_searchbar.axg_hide {
+  width: 0;
+  margin: 0;
 }
 
 @media(max-width: 600px) {
