@@ -23,6 +23,7 @@ class activationHandler {
     activationHandlerTools.close(natEl)
     activationHandlerTools.endListener(natEl)
     activationHandlerTools.deactiveElem(triggeredElem)
+    triggeredId = '';
   }
 }
 
