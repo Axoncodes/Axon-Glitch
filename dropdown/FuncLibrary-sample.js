@@ -2,10 +2,10 @@
 window.addEventListener("load", ()=>{
 
   // dropdown handler
-  const dropdowns = document.querySelectorAll("ax-elements .dropdown");
-  const dropdownHeaders = document.querySelectorAll("ax-elements .dropdown .dropdownHead");
-  const dropdownSubMenuDiv = document.querySelectorAll("ax-elements .dropdown .dropdownBody .menu li[subtrigger='click'] > div");
-  const dropdownSubMenu = document.querySelectorAll("ax-elements .dropdown .dropdownBody .menu li[subtrigger='click']");
+  const dropdowns = document.querySelectorAll(".ax_elements .dropdown");
+  const dropdownHeaders = document.querySelectorAll(".ax_elements .dropdown .dropdownHead");
+  const dropdownSubMenuDiv = document.querySelectorAll(".ax_elements .dropdown .dropdownBody .menu li[subtrigger='click'] > div");
+  const dropdownSubMenu = document.querySelectorAll(".ax_elements .dropdown .dropdownBody .menu li[subtrigger='click']");
 
   // handle submenu clicks
   dropdownSubMenuDiv.forEach((element, key) => {
@@ -30,8 +30,8 @@ window.addEventListener("load", ()=>{
 
   // click away handler
   // hover:
-  document.querySelectorAll("ax-elements .dropdown li[subtrigger='hover']").forEach((element, key) => {
-    document.querySelectorAll("ax-elements .dropdown li[subtrigger='hover'] li").forEach((subElement) => {
+  document.querySelectorAll(".ax_elements .dropdown li[subtrigger='hover']").forEach((element, key) => {
+    document.querySelectorAll(".ax_elements .dropdown li[subtrigger='hover'] li").forEach((subElement) => {
       subElement.addEventListener("mouseleave", ()=>{
         if(subElement.classList.contains("subopen")) {
           subElement.classList.remove("subopen");
@@ -42,36 +42,36 @@ window.addEventListener("load", ()=>{
   // click:
   window.addEventListener("click", (event)=>{
 
-    const dropdownHeaders = document.querySelectorAll("ax-elements .dropdown .dropdownHead");
+    const dropdownHeaders = document.querySelectorAll(".ax_elements .dropdown .dropdownHead");
     // if the click is on a dropdown
     let triggerOnDropdown = false;
     if(event.target.getAttribute("childmode") == "dropdown" ) triggerOnDropdown = true;
 
     if(!triggerOnDropdown) {
       dropdownHeaders.forEach((dom, key)=>{
-        const currentmenu = document.querySelectorAll(`ax-elements .dropdown .dropdown[childmodeid='${key}'] .dropdownBody .menu li[subtrigger='click'].subopen`);
+        const currentmenu = document.querySelectorAll(`.ax_elements .dropdown .dropdown[childmodeid='${key}'] .dropdownBody .menu li[subtrigger='click'].subopen`);
         currentmenu.forEach((element, key)=>{element.classList.remove("subopen")});
         closeDom(
-          document.querySelectorAll(`ax-elements .dropdown[childmodeid='${key}']`), 
-          document.querySelector(`ax-elements .dropdown[childmodeid='${key}'] .dropdownBody`), 
-          document.querySelector(`ax-elements .dropdown[childmodeid='${key}'] .dropdownHead`), 
-          document.querySelector(`ax-elements .dropdown[childmodeid='${key}'] .dropdownBody .menu`),
+          document.querySelectorAll(`.ax_elements .dropdown[childmodeid='${key}']`), 
+          document.querySelector(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownBody`), 
+          document.querySelector(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownHead`), 
+          document.querySelector(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownBody .menu`),
         );
       });
     }
     else{
       dropdownHeaders.forEach((dom, key)=>{
         if (event.target.getAttribute("childmodeid") != dom.getAttribute("childmodeid")) {
-          const currentmenu = document.querySelectorAll(`ax-elements .dropdown[childmodeid='${key}'] .dropdownBody .menu li[subtrigger='click'].subopen`);
+          const currentmenu = document.querySelectorAll(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownBody .menu li[subtrigger='click'].subopen`);
           currentmenu.forEach((element, key)=>{
             if(!isDescendant(element, event.target))
               element.classList.remove("subopen")
           });
           closeDom(
-            document.querySelectorAll(`ax-elements .dropdown[childmodeid='${key}']`), 
-            document.querySelector(`ax-elements .dropdown[childmodeid='${key}'] .dropdownBody`), 
-            document.querySelector(`ax-elements .dropdown[childmodeid='${key}'] .dropdownHead`), 
-            document.querySelector(`ax-elements .dropdown[childmodeid='${key}'] .dropdownBody .menu`),
+            document.querySelectorAll(`.ax_elements .dropdown[childmodeid='${key}']`), 
+            document.querySelector(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownBody`), 
+            document.querySelector(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownHead`), 
+            document.querySelector(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownBody .menu`),
           )
         }
       });
@@ -101,7 +101,7 @@ window.addEventListener("load", ()=>{
   function dropdownHoverTrigger(element, key) {
     element.addEventListener("mouseenter", ()=>{dropdownHandler(key)});
     element.addEventListener("mouseleave", ()=>{
-      const currentmenu = document.querySelectorAll(`ax-elements .dropdown[childmodeid='${key+1}'] .dropdownBody .menu li[subtrigger='click'].subopen`);
+      const currentmenu = document.querySelectorAll(`.ax_elements .dropdown[childmodeid='${key+1}'] .dropdownBody .menu li[subtrigger='click'].subopen`);
       currentmenu.forEach((element1, key)=>{
         element1.classList.remove("subopen");
       });
@@ -121,7 +121,7 @@ window.addEventListener("load", ()=>{
 
 
   // head title settings
-  document.querySelectorAll(`ax-elements:not([nomain="true"]) > section.dropdown`).forEach((element)=>{
+  document.querySelectorAll(`.ax_elements:not([nomain="true"]) > section.dropdown`).forEach((element)=>{
     if(document.querySelector(`.dropdown .dropdownBody[childmodeid='${element.getAttribute("childmodeid")}'] .menu .dropdownHeadTitle`)) {
       const inner = element.querySelector(".dropdownHead .inner");
       document.querySelector(`.dropdown .dropdownBody[childmodeid='${element.getAttribute("childmodeid")}'] .menu .dropdownHeadTitle`).style.color = inner.getAttribute("headTitleColor");
@@ -130,7 +130,7 @@ window.addEventListener("load", ()=>{
 
 
   // style on hover
-  document.querySelectorAll(`ax-elements:not([nomain="true"]) > section.dropdown`).forEach((element)=>{
+  document.querySelectorAll(`.ax_elements:not([nomain="true"]) > section.dropdown`).forEach((element)=>{
     const inner = element.querySelector(".dropdownHead .inner");
     element.addEventListener("mouseover", ()=>{
       if(!element.classList.contains("open")) {
@@ -154,11 +154,11 @@ window.addEventListener("load", ()=>{
   function dropdownHandler(key) {
 
     // declare
-    const dropdown = document.querySelectorAll(`ax-elements .dropdown[childmodeid='${key}']`);
-    const head = document.querySelector(`ax-elements .dropdown .dropdownHead[childmodeid='${key}']`);
-    const body = document.querySelector(`ax-elements .dropdown .dropdownBody[childmodeid='${key}']`);
-    const menu = document.querySelector(`ax-elements .dropdown .dropdownBody .menu[childmodeid='${key}']`);
-    const lists = document.querySelectorAll(`ax-elements .dropdown[childmodeid='${key}'] .dropdownBody .menu li`);
+    const dropdown = document.querySelectorAll(`.ax_elements .dropdown[childmodeid='${key}']`);
+    const head = document.querySelector(`.ax_elements .dropdown .dropdownHead[childmodeid='${key}']`);
+    const body = document.querySelector(`.ax_elements .dropdown .dropdownBody[childmodeid='${key}']`);
+    const menu = document.querySelector(`.ax_elements .dropdown .dropdownBody .menu[childmodeid='${key}']`);
+    const lists = document.querySelectorAll(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownBody .menu li`);
     
     // open/close handler
     dropdown[0].classList.contains("open") 
@@ -166,7 +166,7 @@ window.addEventListener("load", ()=>{
       :openDom(dropdown, body, head, lists, menu);
       
     // subopening handler
-    document.querySelectorAll(`ax-elements .dropdown[childmodeid="${key+1}"] .dropdownBody .menu li.side > ul`).forEach((dom, key2)=>{
+    document.querySelectorAll(`.ax_elements .dropdown[childmodeid="${key+1}"] .dropdownBody .menu li.side > ul`).forEach((dom, key2)=>{
       // handleTheDropdownsFallingOutOfView(key+1, dom);
     });
 

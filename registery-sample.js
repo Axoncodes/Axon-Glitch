@@ -19,7 +19,7 @@ customElements.define('ax-elements', class AxElements extends HTMLElement {
 // axCustomsearchbar --start
 function axCustomsearchbar(element) {
 	const regExp = /[^'\x22]+/;
-	element.innerHTML = `
+	element.outerHTML = `
     <div id="axg_searchbar">
 			<form id="axg_searchform" method="POST">
 			<label for="axg_searchform_button">search</label>
@@ -46,7 +46,7 @@ function axCustomSidebar(element) {
 
 // axCustomScrolldownAnimation --start
 function axCustomScrolldownAnimation(element) {
-    element.innerHTML = `<div class="lf_scrolldown">
+    element.outerHTML = `<div class="lf_scrolldown">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z"/></svg>
@@ -133,11 +133,11 @@ function axCustomDropdown(element) {
         if(attrs.targetLocator && attrs.targetLocator.length>0) {
             document.getElementById(attrs.targetLocator).classList.add(`dropdown-${dropdownsCount}`);
             document.getElementById(attrs.targetLocator).innerHTML = `<section ${childMode} class="dropdown">${dropdownBody}</section>`;
-            element.innerHTML = `<section style="${attrs.width?`min-width:${attrs.width+"px"}`:``}" targetLocator="${attrs.targetLocator}" mode="${attrs.structure}" ${childMode} class="dropdown mainDropdown ${attrs.structure}">${dropdownHead}</section>`;
+            element.outerHTML = `<section class="ax_elements"><section style="${attrs.width?`min-width:${attrs.width+"px"}`:``}" targetLocator="${attrs.targetLocator}" mode="${attrs.structure}" ${childMode} class="dropdown mainDropdown ${attrs.structure}">${dropdownHead}</section></section>`;
             dropdownsCount++;
         }else{
             dropdownsCount++;
-            element.innerHTML = `<section style="${attrs.width?`min-width:${attrs.width+"px"}`:``}" mode="${attrs.structure}" ${childMode} class="dropdown mainDropdown ${attrs.structure}">${dropdownHead} ${dropdownBody}</section>`;
+            element.outerHTML = `<section class="ax_elements"><section style="${attrs.width?`min-width:${attrs.width+"px"}`:``}" mode="${attrs.structure}" ${childMode} class="dropdown mainDropdown ${attrs.structure}">${dropdownHead} ${dropdownBody}</section></section>`;
         }
     }
 }
@@ -182,7 +182,7 @@ function axCustomLogo(element) {
         src: element.attributes.src?element.attributes.src.value:null,
         mode: element.attributes.mode?element.attributes.mode.value:null,
     };
-    element.innerHTML = `
+    element.outerHTML = `
         <a href="${attrs.link}" class="headerLogo">
             <img width="100" src="${attrs.src}" alt="${attrs.alt}" />
         </a>
