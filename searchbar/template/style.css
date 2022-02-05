@@ -127,6 +127,7 @@
 #axg_searchbar.axg_hide {
   width: 0;
   margin: 0;
+  overflow: hidden;
 }
 
 @media(max-width: 600px) {
