@@ -8,6 +8,10 @@ if (document.getElementById("axg_searchform")) {
   // hideAtTop
   const searchbar = document.getElementById('axg_searchbar')
   const hideAtTop = parseInt(searchbar.getAttribute('hideAtTop'))
+  if (hideAtTop) {
+    searchbar.classList.add('axg_hide')
+    if (window.scrollY > 200) searchbar.classList.remove('axg_hide')
+  }
   window.addEventListener("scroll", () => {
     if (hideAtTop) {
       searchbar.classList.add('axg_hide')
