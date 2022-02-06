@@ -17,7 +17,8 @@ class activationHandler {
     activationHandlerTools.activeElem(triggeredElem)
   }
 
-  static end() {
+  static end(triggeredIdArg) {
+    if (triggeredIdArg && typeof triggeredIdArg == 'string') triggeredId = triggeredIdArg
     const natEl = document.getElementById(natId);
     const triggeredElem = document.getElementById(triggeredId);
     activationHandlerTools.close(natEl)
