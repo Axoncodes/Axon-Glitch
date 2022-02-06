@@ -186,7 +186,11 @@ section.dropdown.open {
     position: absolute;
     padding: 0;
 }
-
+.ax_elements[nomain="true"] {
+    position: absolute;
+    width: 100%;
+    display: contents;
+}
 /* custom mega dropdown */
 .dropdown.mega[nomain="true"], 
 .dropdownTakeout,
