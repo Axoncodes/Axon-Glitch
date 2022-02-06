@@ -2,7 +2,7 @@ if (document.getElementById("axg_searchform")) {
   document.getElementById("axg_searchform").addEventListener("click", e => {
     e.preventDefault();
     document.getElementById("axg_searchform_res_cover").style.display="block";
-    if (document.getElementById("axg_isearch").value.length > 0) activationHandler.start('axg_searchbar')
+    if (document.getElementById("axg_isearch").value.length > 0 || window.outerWidth <= 600) activationHandler.start('axg_searchbar')
   });
 
   document.getElementById("axg_isearch").addEventListener("input", e => {
