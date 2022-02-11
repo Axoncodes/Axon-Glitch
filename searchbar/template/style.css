@@ -33,6 +33,7 @@
   direction: ltr;
   border-radius: 1.3em;
   outline: none;
+  width: 100%;
 }
 
 #axg_searchform_button {
