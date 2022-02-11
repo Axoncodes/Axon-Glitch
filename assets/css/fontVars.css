@@ -1,4 +1,5 @@
 :root {
+    --xxLarge-text-fontSize: max(20px, 7vw);
     --xLarge-text-fontSize: max(20px, 5vw);
     --large-text-fontSize: max(19px, 2.6vw);
     --midLarge-text-fontSize: max(20px, 2vw);
