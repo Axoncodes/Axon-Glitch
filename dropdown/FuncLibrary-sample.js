@@ -47,21 +47,22 @@ window.addEventListener("load", ()=>{
     let triggerOnDropdown = false;
     if(event.target.getAttribute("childmode") == "dropdown" ) triggerOnDropdown = true;
 
-    if(!triggerOnDropdown) {
+    if (!triggerOnDropdown) {
       dropdownHeaders.forEach((dom, key)=>{
         const currentmenu = document.querySelectorAll(`.ax_elements .dropdown .dropdown[childmodeid='${key}'] .dropdownBody .menu li[subtrigger='click'].subopen`);
         currentmenu.forEach((element, key)=>{element.classList.remove("subopen")});
-        closeDom(
-          document.querySelectorAll(`.ax_elements .dropdown[childmodeid='${key}']`), 
-          document.querySelector(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownBody`), 
-          document.querySelector(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownHead`), 
-          document.querySelector(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownBody .menu`),
-        );
+        if (document.querySelector(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownBody`))
+          closeDom(
+            document.querySelectorAll(`.ax_elements .dropdown[childmodeid='${key}']`), 
+            document.querySelector(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownBody`), 
+            document.querySelector(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownHead`), 
+            document.querySelector(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownBody .menu`),
+          );
       });
     }
     else{
       dropdownHeaders.forEach((dom, key)=>{
-        if (event.target.getAttribute("childmodeid") != dom.getAttribute("childmodeid")) {
+        if (event.target.getAttribute("childmodeid") != dom.getAttribute("childmodeid") && document.querySelector(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownBody`)) {
           const currentmenu = document.querySelectorAll(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownBody .menu li[subtrigger='click'].subopen`);
           currentmenu.forEach((element, key)=>{
             if(!isDescendant(element, event.target))
@@ -134,7 +135,7 @@ window.addEventListener("load", ()=>{
     const inner = element.querySelector(".dropdownHead .inner");
     element.addEventListener("mouseover", ()=>{
       if(!element.classList.contains("open")) {
-        element.querySelector(".dropdownHead .inner .dropicon").src = "https://axoncodes.com/libraries/dropdown/assets/icons/down-white.svg";
+        if (element.querySelector(".dropdownHead .inner .dropicon")) element.querySelector(".dropdownHead .inner .dropicon").src = "https://api.axoncodes.com/libraries/dropdown/assets/icons/down-white.svg";
         inner.style.backgroundColor = inner.getAttribute("headbackgroundhover");
         inner.style.color = inner.getAttribute("colorhover");
         
@@ -143,7 +144,7 @@ window.addEventListener("load", ()=>{
 
     element.addEventListener("mouseout", ()=>{
       if(!element.classList.contains("open")) {
-        element.querySelector(".dropdownHead .inner .dropicon").src = "https://axoncodes.com/libraries/dropdown/assets/icons/down.svg";
+        if (element.querySelector(".dropdownHead .inner .dropicon")) element.querySelector(".dropdownHead .inner .dropicon").src = "https://api.axoncodes.com/libraries/dropdown/assets/icons/down.svg";
         inner.style.backgroundColor = inner.getAttribute("headbackground");
         inner.style.color = inner.getAttribute("color");
       }
@@ -161,7 +162,7 @@ window.addEventListener("load", ()=>{
     const lists = document.querySelectorAll(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownBody .menu li`);
     
     // open/close handler
-    dropdown[0].classList.contains("open") 
+    if (body) dropdown[0].classList.contains("open") 
       ?closeDom(dropdown, body, head, menu)
       :openDom(dropdown, body, head, lists, menu);
       
@@ -198,7 +199,7 @@ window.addEventListener("load", ()=>{
     head.classList.remove("open");
     head.querySelector(".inner").style.backgroundColor=head.querySelector(".inner").getAttribute("headbackground");
     head.querySelector(".inner").style.color=head.querySelector(".inner").getAttribute("color");
-    head.querySelector(".inner .dropicon").src="https://axoncodes.com/libraries/dropdown/assets/icons/down.svg";
+    head.querySelector(".inner .dropicon").src="https://api.axoncodes.com/libraries/dropdown/assets/icons/down.svg";
     // menu.style.maxHeight = 0;
     body.style.maxHeight = 0;
   }
@@ -213,7 +214,7 @@ window.addEventListener("load", ()=>{
     head.classList.add("open");
     head.querySelector(".inner").style.backgroundColor=head.querySelector(".inner").getAttribute("activebackground");
     head.querySelector(".inner").style.color=head.querySelector(".inner").getAttribute("colorhover");
-    head.querySelector(".inner .dropicon").src="https://axoncodes.com/libraries/dropdown/assets/icons/down-white.svg";
+    head.querySelector(".inner .dropicon").src="https://api.axoncodes.com/libraries/dropdown/assets/icons/down-white.svg";
     lists.forEach((list)=>{
       height += list.clientHeight;
       // menu.style.maxHeight = (height+minMenuHeight)+"px";
