@@ -123,6 +123,8 @@
   width: unset;
   height: unset;
   padding-top: 48px;
+  overflow-y: scroll;
+  max-height: 60vh;
 }
 
 #axg_searchbar.axg_hide {
