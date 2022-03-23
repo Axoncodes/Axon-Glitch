@@ -11,10 +11,33 @@ customElements.define('ax-elements', class AxElements extends HTMLElement {
             case "logo": axCustomLogo(this); break;
             case "sidebar": axCustomSidebar(this); break;
             case "scrolldownAnimation": axCustomScrolldownAnimation(this); break;
+            case "heartBeat": axCustomHeartBeat(this); break;
             default: break;
         }
     }
 });
+
+function axCustomHeartBeat(element) {
+    const ele = element.attributes
+	element.outerHTML = `
+    <img
+        alt="${ele.alt?ele.alt.value:null}"
+        width="22px"
+        height="22px"
+        src="${window.location.href}/assets/images/heart.svg"
+        style="
+            width: 15px;
+            height: auto;
+            animation-name: heart;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            transform: translateY(2px) scale(1);
+            transition: all .3s;
+            margin: 0 5px;
+        "
+    />
+    `;
+}
 
 // axCustomsearchbar --start
 function axCustomsearchbar(element) {

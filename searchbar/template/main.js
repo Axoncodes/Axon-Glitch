@@ -6,8 +6,7 @@ if (document.getElementById("axg_searchform")) {
   });
 
   // custom placeholder
-  document.getElementById("axg_isearch").placeholder = document.getElementById("axg_isearch").getAttribute('customplaceholder') || document.getElementById("axg_isearch").placeholder
-  // document.getElementById("axg_isearch").removeAttribute('customplaceholder')
+  document.getElementById("axg_isearch").placeholder = document.getElementById("axg_isearch").hasAttribute('customplaceholder') ? document.getElementById("axg_isearch").getAttribute('customplaceholder') : 'Search...'
 
   document.getElementById("axg_isearch").addEventListener("input", e => {
     if (e.target.value.length > 0) activationHandler.start('axg_searchbar')
