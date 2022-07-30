@@ -1,0 +1,28 @@
+.axg_stars.stars {
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+}
+.axg_stars.star polygon { opacity:1;fill:#0000 }
+.axg_stars.star.active g, .star.active polygon { fill:var(--starColor)!important }
+/* .star.active ~ svg g, .star.active ~ svg polygon, .star.active g, .star.active polygon { fill:var(--starColor)!important } */
+.axg_stars .star0:hover ~ svg g, .axg_stars .star0:hover ~ svg polygon, .axg_stars .star0:hover g, .axg_stars .star0:hover polygon { fill:var(--starColor)!important }
+.axg_stars .star1:hover ~ svg g, .axg_stars .star1:hover ~ svg polygon, .axg_stars .star1:hover g, .axg_stars .star1:hover polygon { fill:var(--starColor)!important }
+.axg_stars .star2:hover ~ svg g, .axg_stars .star2:hover ~ svg polygon, .axg_stars .star2:hover g, .axg_stars .star2:hover polygon { fill:var(--starColor)!important }
+.axg_stars .star3:hover ~ svg g, .axg_stars .star3:hover ~ svg polygon, .axg_stars .star3:hover g, .axg_stars .star3:hover polygon { fill:var(--starColor)!important }
+.axg_stars .star4:hover ~ svg g, .axg_stars .star4:hover ~ svg polygon, .axg_stars .star4:hover g, .axg_stars .star4:hover polygon { fill:var(--starColor)!important }
+
+
+
+
+
+/* .tooltip { font-family: "Inter", Arial, sans-serif;font-size: var(--small-text-fontSize);position: absolute;place-self: center;transform: translateY(-1px) translateX(-120%);background-color: #5b5b5b;color: #fff;padding: 2px 8px;border-radius: 3px;display: none;} */
+/* .tooltip{left:unset;transform:translateY(30px)} */
+/* .tooltip{transform:translate(0px,33px)} */
+/* .star.active ~ .tooltip.active { display:block } */
+/* .star0:hover ~ .tooltip4 { display:block } */
+/* .star1:hover ~ .tooltip3{display:block} */
+/* .star2:hover ~ .tooltip2{display:block} */
+/* .star3:hover ~ .tooltip1{display:block} */
+/* .star4:hover ~ .tooltip0{display:block} */
+/* .cover:nth-child(3) .tooltip0.done{left:119px;transform:translateY(0px)} */

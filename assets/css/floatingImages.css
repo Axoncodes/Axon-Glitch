@@ -1,0 +1,23 @@
+.axg_floatingImages .cover {
+  position: relative;
+}
+
+.axg_floatingImages .top, .axg_floatingImages .bottom {
+  position: relative;
+}
+
+.axg_floatingImages .top {
+  transform: translate(-3vw, 1vw) scale(0.8);
+  height: 10vw;
+}
+
+.axg_floatingImages .main {
+  transform: translate(3vw, -3vw) scale(0.8);
+  height: 22vw;
+}
+
+@media (max-width: 768px) {
+  .axg_floatingImages .main {
+    height: 56vw;
+  }
+}

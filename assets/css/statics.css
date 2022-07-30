@@ -1,0 +1,58 @@
+.axg_statics.flex li {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  position: relative;
+  margin: 0;
+  margin-right: 16px;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+}
+
+.axg_statics.flex li::after {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background-color: var(--dimDark);
+  display: block;
+  border-radius: 50%;
+  position: absolute;
+  top: 40%;
+  right: 0;
+  transform: translate(10px, 0px);
+}
+
+.axg_statics.flex li:last-child::after {
+  display: none;
+}
+
+.axg_statics.list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  row-gap: 17px;
+  padding: 0;
+}
+
+.axg_statics.list li {
+  display: flex;
+  column-gap: 10px;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.axg_statics.list .number {
+  background-color: #C4C4C4;
+  border-radius: 2px;
+  padding: 2px 4px;
+}
+
+.axg_statics .number {
+  font-size: var(--standard-text-fontSize);
+  margin-right: 3px;
+}
+
+.axg_statics .name {
+  font-size: var(--midSmall-text-fontSize);
+}

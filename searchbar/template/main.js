@@ -1,10 +1,12 @@
+// document.addEventListener('DOMContentLoaded', (event) => {
 if (document.getElementById("axg_searchform")) {
   document.getElementById("axg_searchform").addEventListener("click", e => {
     e.preventDefault();
     document.getElementById("axg_searchform_res_cover").style.display="block";
-    if (document.getElementById("axg_isearch").value.length > 0 || window.outerWidth <= 600) activationHandler.start('axg_searchbar')
+    // if (document.getElementById("axg_isearch").value.length > 0 || window.outerWidth <= 600)
+    activationHandler.start('axg_searchbar')
   });
-
+  
   // custom placeholder
   document.getElementById("axg_isearch").placeholder = document.getElementById("axg_isearch").hasAttribute('customplaceholder') ? document.getElementById("axg_isearch").getAttribute('customplaceholder') : 'Search...'
 
@@ -27,3 +29,4 @@ if (document.getElementById("axg_searchform")) {
     }
   });
 }
+// })

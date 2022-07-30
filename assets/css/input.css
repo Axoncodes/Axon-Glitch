@@ -1,0 +1,51 @@
+.axg_input.div {
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+  column-gap: 5px;
+  width: max-content;
+  justify-content: center;
+}
+
+.axg_input.padding {
+  padding: 2vw;
+}
+
+.axg_input.sidepadding {
+  padding-right: 13px;
+  padding-left: 13px;
+}
+
+.axg_input .input {
+  margin: 0;
+}
+
+.axg_input .select {
+  border: none;
+  font-size: var(--standard-button-fontSize);
+}
+
+.axg_input .color {
+  border: none;
+  padding: 0;
+}
+
+.axg_input .lable {
+  font-size: var(--standard-button-fontSize);
+  text-transform: capitalize;
+  white-space: normal;
+}
+
+.axg_input .small {
+  height: max(2vw, 40px);
+}
+
+.axg_input .small label {
+  font-size: var(--standard-text-fontSize);
+  font-weight: 300;
+}
+
+.axg_input .small select {
+  font-weight: 300;
+  font-size: var(--standard-text-fontSize);
+}

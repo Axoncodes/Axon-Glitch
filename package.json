@@ -1,0 +1,25 @@
+{
+  "name": "axon-glitch",
+  "version": "1.0.0",
+  "description": "Welcome to Axon Glitch: AXG",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Axoncodes/Axon-Glitch.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Axoncodes/Axon-Glitch/issues"
+  },
+  "homepage": "https://github.com/Axoncodes/Axon-Glitch#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.19"
+  }
+}

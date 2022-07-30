@@ -21,10 +21,10 @@ window.addEventListener("load", ()=>{
 
   dropdownHeaders.forEach((element, key)=>{
     dropdownTrigger(
-      dropdownHeaders[key].getAttribute("subtrigger"), 
+      element.getAttribute('subtrigger'),
       dropdowns[key], 
-      dropdownHeaders[key], 
-      key
+      element, 
+      element.getAttribute('childmodeid')
     );
   });
 
@@ -62,7 +62,8 @@ window.addEventListener("load", ()=>{
     }
     else{
       dropdownHeaders.forEach((dom, key)=>{
-        if (event.target.getAttribute("childmodeid") != dom.getAttribute("childmodeid") && document.querySelector(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownBody`)) {
+        if (event.target.getAttribute("childmodeid") == dom.getAttribute("childmodeid") && document.querySelector(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownBody`) && document.querySelector(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownBody`).length>=0) {
+        // if (event.target.getAttribute("childmodeid") != dom.getAttribute("childmodeid") && document.querySelector(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownBody`)) {
           const currentmenu = document.querySelectorAll(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownBody .menu li[subtrigger='click'].subopen`);
           currentmenu.forEach((element, key)=>{
             if(!isDescendant(element, event.target))
@@ -83,9 +84,7 @@ window.addEventListener("load", ()=>{
   function isDescendant(parent, child) {
     var node = child.parentNode;
     while (node != null) {
-        if (node == parent) {
-            return true;
-        }
+        if (node == parent) return true;
         node = node.parentNode;
     }
     return false;
@@ -95,6 +94,7 @@ window.addEventListener("load", ()=>{
     switch(trigger) {
       case 'click': dropdownClickTrigger(dropdownHeader, key); break;
       case 'hover': dropdownHoverTrigger(dropdown, key); break;
+      // The default is for the structures such as link structure that do not need any eventListener
       default: break;
     }
   }
@@ -135,7 +135,11 @@ window.addEventListener("load", ()=>{
     const inner = element.querySelector(".dropdownHead .inner");
     element.addEventListener("mouseover", ()=>{
       if(!element.classList.contains("open")) {
-        if (element.querySelector(".dropdownHead .inner .dropicon")) element.querySelector(".dropdownHead .inner .dropicon").src = "https://api.axoncodes.com/libraries/dropdown/assets/icons/down-white.svg";
+        // if (element.querySelector(".dropdownHead .inner .dropicon")) element.querySelector(".dropdownHead .inner .dropicon").src = "https://axg.axoncodes.com/dropdown/assets/icons/down-white.svg";
+        if (element.querySelector(".dropdownHead .inner .dropicon")) {
+          element.querySelector(".dropdownHead .inner .dropicon.whitedown").classList.remove('off');
+          element.querySelector(".dropdownHead .inner .dropicon.darkdown").classList.add('off');
+        }
         inner.style.backgroundColor = inner.getAttribute("headbackgroundhover");
         inner.style.color = inner.getAttribute("colorhover");
         
@@ -144,7 +148,13 @@ window.addEventListener("load", ()=>{
 
     element.addEventListener("mouseout", ()=>{
       if(!element.classList.contains("open")) {
-        if (element.querySelector(".dropdownHead .inner .dropicon")) element.querySelector(".dropdownHead .inner .dropicon").src = "https://api.axoncodes.com/libraries/dropdown/assets/icons/down.svg";
+        // if (element.querySelector(".dropdownHead .inner .dropicon")) element.querySelector(".dropdownHead .inner .dropicon").src = "https://axg.axoncodes.com/dropdown/assets/icons/down.svg";
+        if (element.querySelector(".dropdownHead .inner .dropicon")) {
+          element.querySelector(".dropdownHead .inner .dropicon.whitedown").classList.add('off');
+          element.querySelector(".dropdownHead .inner .dropicon.darkdown").classList.remove('off');
+        
+          // element.querySelector(".dropdownHead .inner .dropicon").classList.add('darkdown');
+        }
         inner.style.backgroundColor = inner.getAttribute("headbackground");
         inner.style.color = inner.getAttribute("color");
       }
@@ -154,25 +164,35 @@ window.addEventListener("load", ()=>{
 
   function dropdownHandler(key) {
 
-    // declare
     const dropdown = document.querySelectorAll(`.ax_elements .dropdown[childmodeid='${key}']`);
     const head = document.querySelector(`.ax_elements .dropdown .dropdownHead[childmodeid='${key}']`);
     const body = document.querySelector(`.ax_elements .dropdown .dropdownBody[childmodeid='${key}']`);
     const menu = document.querySelector(`.ax_elements .dropdown .dropdownBody .menu[childmodeid='${key}']`);
     const lists = document.querySelectorAll(`.ax_elements .dropdown[childmodeid='${key}'] .dropdownBody .menu li`);
     
+    // close other dropdowns
+    const otherKeys = [...new Set([...document.querySelectorAll(`.ax_elements .dropdown:not([childmodeid='${key}'])`)].map(dropdown => dropdown.getAttribute('childmodeid')).filter(key => key))]
+    otherKeys.forEach(key => {
+      closeDom(
+        document.querySelectorAll(`.ax_elements .dropdown[childmodeid='${key}']`),
+        document.querySelector(`.ax_elements .dropdown .dropdownBody[childmodeid='${key}']`),
+        document.querySelector(`.ax_elements .dropdown .dropdownHead[childmodeid='${key}']`),
+      )
+    })
+
+
     // open/close handler
     if (body) dropdown[0].classList.contains("open") 
       ?closeDom(dropdown, body, head, menu)
       :openDom(dropdown, body, head, lists, menu);
       
-    // subopening handler
-    document.querySelectorAll(`.ax_elements .dropdown[childmodeid="${key+1}"] .dropdownBody .menu li.side > ul`).forEach((dom, key2)=>{
-      // handleTheDropdownsFallingOutOfView(key+1, dom);
-    });
+    // // subopening handler
+    // document.querySelectorAll(`.ax_elements .dropdown[childmodeid="${key+1}"] .dropdownBody .menu li.side > ul`).forEach((dom, key2)=>{
+    //   handleTheDropdownsFallingOutOfView(key+1, dom);
+    // });
 
     // custom --mega
-    if(body.getAttribute('mode') == "mega") {
+    if(body && body.getAttribute('mode') == "mega") {
       body.style.left = "-"+dropdown.offsetLeft+"px";
     }
 
@@ -190,31 +210,51 @@ window.addEventListener("load", ()=>{
     }
   }
 
-  function closeDom(dropdown, body, head, menu) {
-    if(dropdown.length>1) {
-      dropdown[0].classList.remove("open");
-      dropdown[1].classList.remove("open");
-    }else dropdown[0].classList.remove("open");
-    body.classList.remove("open");
-    head.classList.remove("open");
-    head.querySelector(".inner").style.backgroundColor=head.querySelector(".inner").getAttribute("headbackground");
-    head.querySelector(".inner").style.color=head.querySelector(".inner").getAttribute("color");
-    head.querySelector(".inner .dropicon").src="https://api.axoncodes.com/libraries/dropdown/assets/icons/down.svg";
-    // menu.style.maxHeight = 0;
-    body.style.maxHeight = 0;
+  function closeDom(dropdown, body, head) {
+    // only perform the closing function if the dropdown header contains the open class
+    if (head.classList.contains("open")) {
+      if(dropdown.length>1) {
+        dropdown[0].classList.remove("open");
+        dropdown[1].classList.remove("open");
+      }
+      else dropdown[0].classList.remove("open");
+      if (body) {
+        body.classList.remove("open");
+        body.style.maxHeight = 0;
+      }
+      if (head) {
+        head.classList.remove("open");
+        head.querySelector(".inner").style.backgroundColor=head.querySelector(".inner").getAttribute("headbackground");
+        head.querySelector(".inner").style.color=head.querySelector(".inner").getAttribute("color");
+        // console.log(head.querySelector(".inner .dropicon"));
+        // if (head.querySelector(".inner .dropicon")) head.querySelector(".inner .dropicon").src = "https://axg.axoncodes.com/dropdown/assets/icons/down.svg";
+        if (head.querySelector(".inner .dropicon")) {
+          head.querySelector(".inner .dropicon.whitedown").classList.add('off')
+          head.querySelector(".inner .dropicon.darkdown").classList.remove('off')
+        }
+      }
+      // menu.style.maxHeight = 0;
+    }
   }
 
   function openDom(dropdown, body, head, lists, menu) {
+    console.log('open');
     var height = 0, minMenuHeight = menu.clientHeight;
-    if(dropdown.length>1) {
-      dropdown[0].classList.add("open");
-      dropdown[1].classList.add("open");
-    } else dropdown[0].classList.add("open");
+
+    dropdown[0].classList.add("open")
+    if (dropdown.length > 1) dropdown[1].classList.add("open");
+
     body.classList.add("open");
     head.classList.add("open");
     head.querySelector(".inner").style.backgroundColor=head.querySelector(".inner").getAttribute("activebackground");
     head.querySelector(".inner").style.color=head.querySelector(".inner").getAttribute("colorhover");
-    head.querySelector(".inner .dropicon").src="https://api.axoncodes.com/libraries/dropdown/assets/icons/down-white.svg";
+    // if (head.querySelector(".inner .dropicon")) head.querySelector(".inner .dropicon").src="https://axg.axoncodes.com/dropdown/assets/icons/down-white.svg";
+    if (head.querySelector(".inner .dropicon")) {
+      head.querySelector(".inner .dropicon.whitedown").classList.remove('off');
+      head.querySelector(".inner .dropicon.darkdown").classList.add('off');
+
+      // head.querySelector(".inner .dropicon").classList.add('darkdown');
+    }
     lists.forEach((list)=>{
       height += list.clientHeight;
       // menu.style.maxHeight = (height+minMenuHeight)+"px";

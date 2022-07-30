@@ -1,0 +1,70 @@
+.axg_bgshape .cover {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(50px);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.axg_bgshape .item {
+  display: block;
+  position: absolute;
+  z-index: 0;
+}
+
+.axg_bgshape .small {
+  width: 17vw;
+  height: 17vw;
+}
+
+.axg_bgshape .medium {
+  width: 25vw;
+  height: 25vw;
+}
+
+.axg_bgshape .veryLeft {
+  left: -3%;
+}
+
+.axg_bgshape .midLeft {
+  left: 10%;
+}
+
+.axg_bgshape .left {
+  left: 0%;
+}
+
+.axg_bgshape .right {
+  right: 0;
+}
+
+.axg_bgshape .veryRight {
+  right: -3%;
+}
+
+.axg_bgshape .bottom {
+  bottom: 0
+}
+
+.axg_bgshape .veryBottom {
+  bottom: -10%
+}
+
+.axg_bgshape .bitLeft {
+  left: 30vw;
+}
+
+.axg_bgshape .top {
+  top: 0;
+}
+
+.axg_bgshape .midTop {
+  top: 10%;
+}
+
+.axg_bgshape .circle {
+  border-radius: 50%;
+}

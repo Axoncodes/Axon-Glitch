@@ -1,0 +1,69 @@
+.axg_text.mainText {
+  font-size: var(--xxLarge-text-fontSize);
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: -0.1rem;
+  word-spacing: 2px;
+  margin: 0px;
+}
+
+.axg_text.textleft {
+  text-align: left;
+}
+
+.axg_text.default {
+  position: relative;
+  z-index: 2;
+}
+
+.axg_text.wide {
+  width: 100%;
+}
+
+.axg_text.subMainText {
+  font-size: var(--large-text-fontSize);
+  font-weight: 500;
+  text-align: center;
+  margin: 0px;
+  letter-spacing: -0.05rem;
+}
+
+.axg_text .center {
+  text-align: center!important;
+}
+
+.axg_text .boxTitle {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.axg_text.paragraph {
+  text-align: justify;
+  font-size: var(--standard-text-fontSize);
+}
+
+.axg_text.nomargin {
+  margin: 0;
+}
+
+.axg_text.paragraph a {
+  color: var(--links_colors);
+}
+
+.axg_text.sectionIntro {
+  border-bottom: 2px solid #00000026;
+  margin-top: 0;
+}
+
+/* sizes */
+.axg_text.sectionIntro.small {
+  border: none;
+  font-size: var(--smallLarge-text-fontSize);
+  font-weight: 500;
+}
+
+.axg_text.sectionIntro.large {
+  font-size: var(--large-text-fontSize);
+  font-weight: 400;
+}

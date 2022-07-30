@@ -1,11 +1,15 @@
-const natId = 'axg_naturalizer';
-let triggeredId = '';
+var activationHandlerLoaded = false
+var natId = 'axg_naturalizer';
+var triggeredId = '';
 class activationHandler {
   static init() {
     // Implement the naturalizer layer
-    const naturalizer = document.createElement("DIV");
-    naturalizer.setAttribute('id', natId)
-    document.body.appendChild(naturalizer);
+    if (!activationHandlerLoaded) {
+      activationHandlerLoaded = true
+      const naturalizer = document.createElement("DIV");
+      naturalizer.setAttribute('id', natId)
+      document.body.appendChild(naturalizer);
+    }
   }
 
   static start(triggeredIdArg) {
@@ -34,7 +38,7 @@ class activationHandlerTools {
   }
 
   static close(natEl) {
-    natEl.style.zIndex = '0';
+    natEl.style.zIndex = '-1';
   }
 
   static startListener(natEl) {
